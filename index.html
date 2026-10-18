@@ -39,6 +39,17 @@
 .g-gd{--g:var(--g-gd);--gb:var(--gb-gd)} .g-biz{--g:var(--g-biz);--gb:var(--gb-biz)} .g-med{--g:var(--g-med);--gb:var(--gb-med)}
 .g-elec{--g:var(--g-elec);--gb:var(--gb-elec)} .g-rob{--g:var(--g-rob);--gb:var(--gb-rob)} .g-energy{--g:var(--g-energy);--gb:var(--gb-energy)} .g-res{--g:var(--g-res);--gb:var(--gb-res)}
 
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-padding-top:88px;-webkit-text-size-adjust:100%}
