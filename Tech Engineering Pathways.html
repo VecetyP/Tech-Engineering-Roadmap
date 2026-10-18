@@ -244,6 +244,36 @@ main{display:block;min-height:70vh}
 .res li{display:flex;gap:8px;align-items:baseline}
 .res svg{flex:none;transform:translateY(2px);color:var(--ink-2)}
 .finish{display:flex;align-items:center;gap:14px;margin-top:36px;padding:18px 20px;border-radius:14px;background:var(--band);color:var(--band-ink)}
+.size{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2);white-space:nowrap}
+.size .lv{display:inline-flex;gap:3px}
+.size .lv i{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--ink-2)}
+.size .lv i.on{background:var(--ink-2)}
+ol.steps{list-style:none;counter-reset:st;display:grid;gap:8px;padding:0;margin:0}
+ol.steps li{counter-increment:st;display:flex;gap:12px;align-items:baseline;line-height:1.5}
+ol.steps li::before{content:counter(st);flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--trail-bg);color:var(--ink);font:500 13px var(--mono);transform:translateY(-1px)}
+.folio{margin-top:36px;border-top:2px solid var(--ink);padding-top:20px}
+.folio h2{font-size:clamp(24px,2.6vw,30px)}
+.folio > p{color:var(--ink-2);margin-top:6px;max-width:62ch}
+.folio ul{list-style:none;margin-top:16px;border-top:1px solid var(--rule)}
+.folio li a{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 4px;border-bottom:1px solid var(--rule);color:var(--ink);text-decoration:none}
+.folio li a:hover{background:var(--sunk)}
+.folio li b{font-weight:700}
+.folio li .size{margin-left:auto}
+.folio li .ok{color:var(--done);display:inline-flex}
+.spec.proj{--gb:var(--sunk)}
+.spec .proves{font-size:14px;line-height:1.45;color:var(--ink)}
+.spec .proves em{font-style:italic;color:var(--ink-2)}
+@media (max-width:719px){.jump.scrollrow{flex-wrap:nowrap;overflow-x:auto;margin-inline:-16px;padding:2px 16px 8px;scrollbar-width:thin}.jump.scrollrow .chip{flex:none}}
+.lvsec{margin-top:56px}
+.lvsec > header{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:3px solid var(--ink)}
+.lvsec h2{font-size:clamp(26px,3vw,34px);display:flex;align-items:center;gap:12px}
+.lvsec header p{color:var(--ink-2)}
+.lvsec .plate{border-top:0;border-radius:0}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.chip .size{font-size:15px;color:inherit}
+.chip .size .lv i{border-color:currentColor}
+.chip .size .lv i.on{background:currentColor}
+
 .finish svg{flex:none;color:var(--trail)}
 .finish b{font:400 22px/1.2 var(--serif)}
 .finish p{color:var(--band-ink-2);font-size:15px}
@@ -318,6 +348,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <nav class="nav" aria-label="Main">
       <a href="#/" data-nav="home">Find a role</a>
       <a href="#/roles" data-nav="roles">All roles</a>
+      <a href="#/projects" data-nav="projects">Projects</a>
       <a href="#/skills" data-nav="skills">All skills</a>
     </nav>
     <div class="find" role="search">
@@ -374,11 +405,11 @@ const RAW = [
 ["dashtools","t","Dashboards (Streamlit, Power BI)",["viz"],"Tools for publishing interactive reports.","Publish a live dashboard others can open.",["Streamlit docs|https://docs.streamlit.io/"]],
 ["exper","s","Experiment design and A/B testing",["stats"],"Telling real effects from noise. Central to product, research and clinical work.","Design a test for a question in your own life and analyze it.",["Seeing Theory (Brown)|https://seeing-theory.brown.edu/"]],
 ["ml","s","Machine learning",["pydata","stats","linalg"],"Models that learn from data: regression, trees, clustering, evaluation.","Predict something from a Kaggle dataset and explain why the model works.",["ML Specialization (Andrew Ng, free to audit)|https://www.deeplearning.ai/courses/machine-learning-specialization/","scikit-learn tutorials|https://scikit-learn.org/stable/tutorial/index.html","StatQuest|https://www.youtube.com/@statquest"]],
-["kaggle","p","Kaggle competitions",["ml"],"Practice on real problems with public leaderboards and shared notebooks.","Enter one beginner competition and write up your approach.",["Kaggle competitions|https://www.kaggle.com/competitions"]],
+["kaggle","p","Kaggle competitions",["ml"],"Practice on real problems with public leaderboards and shared notebooks.","Enter one beginner competition and write up your approach.",["Kaggle competitions|https://www.kaggle.com/competitions"],"Intermediate|ongoing, 3–4 weeks each"],
 ["dl","s","Deep learning",["ml","calc"],"Neural networks, backpropagation, training at scale.","Train a small network from scratch to classify images.",["Neural Networks: Zero to Hero (Karpathy)|https://karpathy.ai/zero-to-hero.html","Dive into Deep Learning|https://d2l.ai/","fast.ai|https://course.fast.ai/"]],
 ["cv","s","Computer vision",["dl"],"Machines that see: detection, segmentation, tracking.","Detect and count objects in a webcam feed.",["Stanford CS231n|https://cs231n.stanford.edu/","OpenCV docs|https://docs.opencv.org/"]],
 ["nlp","s","NLP and large language models",["dl"],"Text, speech and LLMs.","Fine-tune a small model on a task in a language you speak.",["Hugging Face course|https://huggingface.co/learn"]],
-["llmapps","p","Build an LLM-powered app",["nlp","backend"],"Combine a model API with your own data to make a useful tool. The quickest way to show AI skills.","A study or search assistant over a set of documents you own.",["Anthropic docs|https://docs.claude.com/"]],
+["llmapps","p","Build an LLM-powered app",["nlp","backend"],"Combine a model API with your own data to make a useful tool. The quickest way to show AI skills.","A study or search assistant over a set of documents you own.",["Anthropic docs|https://docs.claude.com/"],"Intermediate|2–3 weekends"],
 ["rl","s","Reinforcement learning",["dl","stats"],"Agents that learn by trial and error. Key to game AI and robot learning.","Train an agent on a Gymnasium environment.",["Sutton and Barto (free book)|http://incompleteideas.net/book/the-book-2nd.html","OpenAI Spinning Up|https://spinningup.openai.com/"]],
 ["mlops","s","MLOps and deployment",["ml","docker"],"Shipping, monitoring and retraining models in production.","Serve a model behind an API and log its predictions.",["Made With ML|https://madewithml.com/"]],
 
@@ -440,78 +471,151 @@ const RAW = [
 ["dental","f","Digital dentistry technology",["cad","medimg","print3d"],"CAD/CAM crowns, aligners, surgical guides, intraoral scanning. Where dentistry and engineering meet.","Design a simple crown or surgical guide from an open scan and print it.",[]],
 ["implants","f","Prosthetics and implants",["biomat","print3d","medimg"],"Custom implants, prosthetic limbs, orthotics.","",[]],
 ["rehab","f","Rehabilitation and assistive tech",["biosig","control","sensors"],"Exoskeletons, bionic hands, brain-computer interfaces.","",[]],
-["wearable","p","Wearable health prototype",["mcu","medinstr"],"A small device that measures something about the body and shows it on a phone.","Build a posture or heart-rate tracker.",[]],
+["wearable","p","Wearable health prototype",["mcu","medinstr"],"A small device that measures something about the body and shows it on a phone.","Build a posture or heart-rate tracker.",[],"Intermediate|3–4 weekends"],
 ["gradschool","f","Research and grad school",["ml","control","medimg","materials","qcomp"],"A master's or PhD to go deeper into one field. Often funded; common in AI, devices and chips.","Join a lab as an undergraduate and help on one paper.",["arXiv|https://arxiv.org/","Semantic Scholar|https://www.semanticscholar.org/"]],
-["hack","p","Hackathons and open source",["git"],"Fast team builds and real contributions. Easiest way to get noticed before graduating.","Join one hackathon this year.",[]],
+["hack","p","Hackathons and open source",["git"],"Fast team builds and real contributions. Easiest way to get noticed before graduating.","Join one hackathon this year.",[],"Starter|1 weekend each"],
 
-["j_swe","j","Software engineer",["dsa","backend","frontend","hack"],"Builds and maintains products. The broadest entry point; every industry hires. Internships are the usual way in.","",[]],
-["j_fe","j","Frontend engineer",["frontend","uxui"],"Builds the interfaces people use in browsers and apps.","",[]],
-["j_be","j","Backend engineer",["backend","db"],"Builds the servers, databases and APIs behind products.","",[]],
-["j_fs","j","Full-stack engineer",["fullstack"],"Works on both the interface and the server. Common in startups and small teams.","",[]],
-["j_mob","j","Mobile developer",["mobile"],"Builds iOS and Android apps, from consumer products to hospital tools.","",[]],
-["j_devops","j","DevOps / platform engineer",["k8s","cloud"],"Builds the pipelines and infrastructure other engineers deploy on.","",[]],
-["j_sre","j","Site reliability engineer",["distsys","k8s"],"Keeps large systems fast and available.","",[]],
-["j_cloud","j","Cloud solutions architect",["cloud","net"],"Designs cloud systems for companies.","",[]],
-["j_sec","j","Security engineer",["sec","cloud"],"Defends systems and finds weaknesses before attackers do.","",[]],
-["j_pen","j","Penetration tester",["sec"],"Paid to break into systems with permission, to show where they are weak before attackers do.","",[]],
-["j_secres","j","Security / cryptography researcher",["crypto","sec"],"Studies new attacks and designs new protections.","",[]],
-["j_sys","j","Systems programmer",["os","cfam"],"Writes operating systems, drivers, databases and runtimes.","",[]],
-["j_comp","j","Compiler engineer",["comp"],"Builds the tools that turn code into fast programs.","",[]],
-["j_game","j","Game developer",["game","cfam"],"Builds gameplay, tools and engines.","",[]],
-["j_gfx","j","Graphics engineer",["gfx","game"],"Builds rendering, shaders and visual effects pipelines.","",[]],
-["j_ux","j","UX / product designer",["uxui"],"Designs how products work, based on research with users.","",[]],
-["j_pm","j","Product manager",["uxui","viz","backend"],"Decides what to build and why. Technical background helps a lot.","",[]],
-["j_analyst","j","Data analyst",["dashtools","db"],"Turns company data into answers and dashboards.","",[]],
-["j_ds","j","Data scientist",["ml","exper","kaggle"],"Builds models and experiments to guide decisions.","",[]],
-["j_de","j","Data engineer",["db","cloud","pydata","pyauto"],"Builds the pipelines that move and clean data at scale.","",[]],
-["j_mle","j","ML engineer",["mlops","ml"],"Puts models into production and keeps them working.","",[]],
-["j_airs","j","AI research scientist",["dl","rl","optim"],"Invents new methods. Usually needs a master's or PhD.","",[]],
-["j_cve","j","Computer vision engineer",["cv"],"Builds systems that understand images and video.","",[]],
-["j_llm","j","LLM / AI application engineer",["llmapps"],"Builds products powered by language models.","",[]],
-["j_gpu","j","GPU / HPC engineer",["gpuprog"],"Makes AI and scientific code run fast on parallel hardware.","",[]],
-["j_aiinfra","j","AI infrastructure engineer",["gpuprog","mlops"],"Builds the systems that train and serve large models.","",[]],
-["j_quant","j","Quantitative analyst",["exper","optim"],"Builds mathematical models for finance and trading.","",[]],
-["j_or","j","Operations research analyst",["optim"],"Optimizes logistics, scheduling and supply chains.","",[]],
-["j_biostat","j","Biostatistician",["exper","bioinfo"],"Designs and analyzes clinical studies.","",[]],
-["j_bioinf","j","Bioinformatics scientist",["bioinfo","ml"],"Analyzes genomic and biological data.","",[]],
-["j_hi","j","Health informatics engineer",["healthinfo"],"Builds hospital data systems and clinical software.","",[]],
-["j_medai","j","Medical AI engineer",["medimg","dl"],"Builds models that read scans and signals.","",[]],
-["j_imgsw","j","Medical imaging software engineer",["medimg","gfx"],"Builds viewers and processing tools for scanners and clinics.","",[]],
-["j_meddev","j","Medical device engineer",["medinstr","medreg","embc","wearable"],"Designs and tests devices such as monitors, pumps and implants.","",[]],
-["j_reg","j","Regulatory and quality engineer",["medreg"],"Gets medical products approved and keeps them compliant.","",[]],
-["j_bme","j","Clinical biomedical engineer",["medinstr","biosig"],"Manages and evaluates equipment inside hospitals.","",[]],
-["j_neuro","j","Neurotech / BCI engineer",["rehab","ml"],"Builds brain-computer interfaces and neural devices.","",[]],
-["j_dentaleng","j","Dental technology engineer",["dental"],"Designs scanners, CAD software and devices for dentistry.","",[]],
-["j_dentalai","j","Dental imaging AI scientist",["dental","dl"],"Builds models that read dental X-rays and 3D scans.","",[]],
-["j_prost","j","Prosthetics / implant engineer",["implants"],"Designs custom implants and prosthetic devices.","",[]],
-["j_emb","j","Embedded / firmware engineer",["rtos","embc"],"Writes the software inside devices, from earbuds to cars.","",[]],
-["j_iot","j","IoT engineer",["iot","cloud"],"Builds connected devices and the cloud behind them.","",[]],
-["j_hw","j","Hardware engineer",["pcb","sensors"],"Designs circuits and boards for products, from sensors to consumer devices.","",[]],
-["j_fpga","j","FPGA engineer",["hdl"],"Builds custom hardware logic that runs faster than software, used in finance, telecom and imaging.","",[]],
-["j_asic","j","ASIC / VLSI design engineer",["vlsi"],"Designs processors and accelerators at the circuit level. Usually needs a master's degree or strong chip-design projects.","",[]],
-["j_verif","j","Design verification engineer",["vlsi"],"Proves chips work before they are made. Large share of chip jobs.","",[]],
-["j_semi","j","Semiconductor process engineer",["semidev"],"Runs and improves the fab steps that make chips.","",[]],
-["j_rf","j","RF / telecom engineer",["rf","net"],"Designs radio and network systems.","",[]],
-["j_dsp","j","DSP / audio engineer",["signals","embc"],"Processes sound, radio and sensor signals in real time.","",[]],
-["j_robsw","j","Robotics software engineer",["ros","percep","plan","roblearn"],"Builds the software that lets robots sense and act.","",[]],
-["j_robctl","j","Robotics controls engineer",["control","kin"],"Designs the feedback that makes robots move precisely.","",[]],
-["j_mecha","j","Mechatronics engineer",["mechatronics"],"Designs machines that combine mechanics, electronics and code.","",[]],
-["j_auto","j","Industrial automation engineer",["control","sensors"],"Automates factories with PLCs, sensors and robots.","",[]],
-["j_drone","j","Drone / UAV engineer",["drone"],"Designs and programs unmanned aircraft.","",[]],
-["j_av","j","Autonomous vehicle engineer",["auto"],"Works on self-driving and delivery vehicles.","",[]],
-["j_sim","j","Simulation engineer",["numer","sim"],"Builds simulations of physical systems for design and testing.","",[]],
-["j_power","j","Power electronics engineer",["powerel"],"Designs chargers, inverters and motor drives.","",[]],
-["j_bat","j","Battery / EV engineer",["battery"],"Works on cells, packs and charging for electric vehicles.","",[]],
-["j_grid","j","Power systems engineer",["grid"],"Plans and runs grids with renewable energy.","",[]],
-["j_qe","j","Quantum engineer / researcher",["qcomp"],"Builds quantum software or hardware. Mostly via grad school.","",[]],
-["j_photo","j","Photonics / optical engineer",["optics","sensors"],"Designs lasers, cameras, lidar and fibre systems.","",[]],
-["j_mat","j","Materials engineer",["materials"],"Chooses and develops materials for products.","",[]],
-["j_sales","j","Solutions / sales engineer",["backend","cloud"],"Explains and fits technical products to customer needs.","",[]],
-["j_consult","j","Technical consultant",["pydata","cloud"],"Solves technology problems for many different clients.","",[]],
-["j_dev","j","Developer advocate / technical creator",["git","frontend"],"Explains tech through docs, talks and videos.","",[]],
-["j_founder","j","Startup founder",["fullstack","exper"],"Builds a company around a product you ship yourself.","",[]],
-["j_prof","j","University researcher / lecturer",["gradschool"],"Research and teaching in a university.","",[]],
-["j_rnd","j","Industry R&D scientist",["gradschool","semidev"],"Research roles inside companies and labs.","",[]]
+// ---------- portfolio projects ----------
+["p_site","p","Personal portfolio website",["web","git"],"Your home on the internet: who you are, what you are learning, and a link to every project you finish. Recruiters often look here before your CV.","Write a one-page site with an about section and a project list; publish it free on GitHub Pages; make it readable on a phone; add a short write-up each time you finish a project",["GitHub Pages docs|https://docs.github.com/en/pages","MDN Learn web development|https://developer.mozilla.org/en-US/docs/Learn"],"Starter|1 weekend"],
+["p_todo","p","Command-line to-do app",["py","git"],"Your first complete program: it reads input, saves data to a file and runs again tomorrow. Small, but it proves you can finish something.","Add, list and tick off tasks from the terminal; save tasks to a JSON file; add due dates and sorting; write three automated tests; put it on GitHub with a README",["Project-based learning list|https://github.com/practical-tutorials/project-based-learning"],"Starter|1 weekend"],
+["p_physim","p","Physics simulation notebook",["py","mech","calc"],"Turn the equations you already know into moving pictures. Shows you can connect math to code, which engineering employers value highly.","Simulate a thrown ball with and without air resistance; add a pendulum and a spring; plot energy over time and check it is conserved; publish the notebook with short explanations",["SciPy tutorial|https://docs.scipy.org/doc/scipy/tutorial/index.html"],"Starter|1–2 weekends"],
+["p_arduino","p","Five Arduino starter builds",["mcu"],"Classic small builds that teach how code meets the physical world: lights, buttons, sensors, sound and motors.","Blink an LED, then fade it; read a button and a light sensor; play a tune on a buzzer; drive a servo from a knob; try each one first in a free online simulator",["Wokwi simulator|https://wokwi.com/","Arduino docs|https://docs.arduino.cc/"],"Starter|2 weekends"],
+["p_scrape","p","Automate a boring chore",["pyauto"],"Pick something you do by hand every week and make the computer do it. A great story for interviews because the problem is real.","Choose a weekly chore such as renaming files or copying prices into a sheet; write a script that does it; schedule it to run on its own; log what it did each time",["Automate the Boring Stuff|https://automatetheboringstuff.com/"],"Starter|1 weekend"],
+["p_clone","p","Rebuild a familiar app screen",["frontend","uxui"],"Copy the layout of an app you use every day, pixel by pixel. The fastest way to learn real-world layout, spacing and components.","Pick one screen from a real app; rebuild it with React; make it work on phone and desktop; compare screenshots side by side and fix the differences",["Frontend Mentor challenges|https://www.frontendmentor.io/challenges"],"Starter|2 weekends"],
+["p_a11y","p","Accessibility audit and fix",["frontend","uxui"],"Check a website for people who use screen readers, keyboards or large text, then fix what you find. A skill many teams lack.","Run an automated check on a site you built; navigate it with only the keyboard; test with a screen reader; fix the top ten problems and write before-and-after notes",["W3C accessibility intro|https://www.w3.org/WAI/fundamentals/accessibility-intro/","Lighthouse|https://developer.chrome.com/docs/lighthouse/overview"],"Intermediate|2 weekends"],
+["p_api","p","Public REST API with docs and tests",["backend","db","git"],"A small web service other programs can use, with real documentation. This is the daily work of most backend teams.","Pick a topic such as a recipe or book catalogue; build create, read, update and delete endpoints; store data in PostgreSQL; add login, tests and auto-generated docs; deploy it to a free host",["FastAPI tutorial|https://fastapi.tiangolo.com/tutorial/"],"Intermediate|3–4 weekends"],
+["p_notesapp","p","Full-stack notes app with login",["fullstack","db"],"A complete product: sign up, log in, create and search your own notes. Proves you can take an idea all the way to a live link.","Design the database tables; build sign-up and login; add create, edit, delete and search; deploy to a public URL; invite three friends to try it and fix what confuses them",["Next.js Learn|https://nextjs.org/learn"],"Intermediate|4–6 weekends"],
+["p_mobileapp","p","Publish a mobile app",["mobile"],"A real app on a real phone, released to testers or an app store. Few beginners get this far, so it stands out.","Build a habit or expense tracker with three screens; save data on the device; add a reminder notification; release it through a test track or store listing",["Flutter docs|https://docs.flutter.dev/"],"Intermediate|4–6 weekends"],
+["p_shell","p","Your own Unix shell and memory allocator",["os","cfam"],"Rebuild two things every programmer uses but few understand. Systems teams love seeing this on a CV.","Write a shell that runs programs, pipes and redirects; add a simple memory allocator with malloc and free; measure it against the system version; explain the design in a README",["Build your own X|https://github.com/codecrafters-io/build-your-own-x","xv6 teaching OS|https://github.com/mit-pdos/xv6-riscv"],"Advanced|4–6 weekends"],
+["p_lang","p","Your own small programming language",["comp"],"Design a tiny language and make it run, from text to working program. The best possible proof for compiler roles.","Write a scanner and parser; build a tree-walking interpreter; add functions and closures; compile to bytecode or WebAssembly and compare speed",["Crafting Interpreters|https://craftinginterpreters.com/"],"Advanced|6–10 weekends"],
+["p_game","p","Ship a finished small game",["game"],"A short, complete, playable game with a start screen and an ending. Finishing matters far more than size in games hiring.","Join a game jam to get a deadline; build one core mechanic; add sound, menus and a win screen; publish it on itch.io and collect player feedback",["Godot docs|https://docs.godotengine.org/","itch.io game jams|https://itch.io/jams"],"Starter|1–2 weekends"],
+["p_raytracer","p","Ray tracer from scratch",["gfx"],"A program that draws realistic 3D pictures by following light rays. A classic portfolio piece for graphics roles.","Render spheres with flat colour; add lighting and shadows; add reflections and glass; render a final scene and post the images",["Ray Tracing in One Weekend|https://raytracing.github.io/"],"Intermediate|2–3 weekends"],
+["p_uxcase","p","UX case study",["uxui"],"Research, redesign and test one real problem, then tell the story. This is what design hiring managers actually read.","Interview five people about an app they find annoying; map their pain points; sketch and prototype a fix in Figma; test it with five more people; write a case study with before and after",["Nielsen Norman Group articles|https://www.nngroup.com/articles/"],"Starter|3–4 weekends"],
+["p_cloudresume","p","Cloud resume challenge",["cloud","web","git"],"Put your CV online using real cloud services, with a visitor counter and automatic deployment. A well-known project that cloud recruiters recognise.","Host your CV as a static site; add a visitor counter backed by a serverless function and database; describe the setup as code; deploy automatically on every push",["The Cloud Resume Challenge|https://cloudresumechallenge.dev/","AWS free tier|https://aws.amazon.com/free/"],"Intermediate|3–4 weekends"],
+["p_cicd","p","Automatic test and deploy pipeline",["k8s","git"],"Every code change is tested, packaged and released without anyone touching a server. The core job of DevOps.","Containerize an app you built; run tests on every push with GitHub Actions; describe infrastructure in Terraform; deploy to Kubernetes; roll back a bad release on purpose",["GitHub Actions docs|https://docs.github.com/en/actions","Terraform tutorials|https://developer.hashicorp.com/terraform/tutorials"],"Advanced|4–6 weekends"],
+["p_monitor","p","Monitoring and alerts for a live app",["docker","cloud"],"Know your app is broken before your users do. Charts, alerts and a written incident review.","Add metrics to an app you deployed; collect them with Prometheus; build a Grafana dashboard; set an alert; break something on purpose and write a short incident report",["Prometheus overview|https://prometheus.io/docs/introduction/overview/","Google SRE books|https://sre.google/books/"],"Intermediate|2–3 weekends"],
+["p_ctf","p","Capture-the-flag write-ups",["sec"],"Legal hacking puzzles, solved and explained in your own words. Security teams read write-ups to judge how you think.","Play a beginner CTF; solve at least ten challenges across web, crypto and forensics; write a clear write-up for each; publish them on your site",["picoCTF|https://picoctf.org/","OverTheWire wargames|https://overthewire.org/wargames/"],"Starter|ongoing, 2 hours a week"],
+["p_homelab","p","Home security lab",["sec","net"],"A small network of virtual machines you attack and defend yourself. Shows hands-on skill beyond certificates.","Set up two or three virtual machines; add a firewall and central logging; attack a deliberately vulnerable app; detect the attack in your logs; document what you changed",["OWASP Juice Shop|https://owasp.org/www-project-juice-shop/"],"Intermediate|3–4 weekends"],
+["p_cryptopals","p","Break real cryptography",["crypto"],"A famous set of exercises where you break encryption that looks safe. The standard training ground for crypto roles.","Complete sets one and two; implement the attacks from scratch; explain why each scheme failed; continue into the harder sets",["Cryptopals challenges|https://cryptopals.com/"],"Advanced|6+ weekends"],
+["p_datastory","p","Data story from public data",["pydata","viz"],"Ask a question, answer it with real data and explain it in charts anyone can follow. The core skill of analyst jobs.","Pick a public dataset you care about; clean it and note every fix; answer three questions with charts; write a one-page summary for a non-technical reader",["Kaggle datasets|https://www.kaggle.com/datasets","Our World in Data|https://ourworldindata.org/"],"Starter|2 weekends"],
+["p_dashboard","p","Live KPI dashboard",["dashtools","db"],"A dashboard that refreshes by itself from a database. Many analyst interviews ask you to walk through one.","Load a dataset into a database; write the SQL for five key numbers; build an interactive dashboard with filters; publish it and schedule a daily refresh",["Streamlit docs|https://docs.streamlit.io/"],"Intermediate|2–3 weekends"],
+["p_pipeline","p","Automated data pipeline",["db","pyauto","cloud"],"Data that moves from a source to a clean, queryable table every day without you. This is what data engineers build.","Pull data from a public API on a schedule; store raw copies; clean and model it into tables; add data quality checks; document the pipeline with a diagram",["Data Engineering Zoomcamp|https://github.com/DataTalksClub/data-engineering-zoomcamp"],"Intermediate|4–6 weekends"],
+["p_abtest","p","Analyse an A/B test end to end",["exper"],"Decide if a change really worked, with honest statistics. Used daily in product, data science and clinical research.","Find a public experiment dataset or simulate one; check sample sizes and balance; run the test and compute confidence intervals; write a decision memo with caveats",["OpenIntro Statistics|https://www.openintro.org/book/os/"],"Intermediate|2 weekends"],
+["p_mlapp","p","Deploy a model as a web app",["mlops"],"A trained model behind a real web page that anyone can try. Bridges the gap between notebooks and products.","Train a model on a public dataset; wrap it in an API; build a simple web page to call it; log every prediction; retrain when new data arrives",["MLOps Zoomcamp|https://github.com/DataTalksClub/mlops-zoomcamp","scikit-learn tutorials|https://scikit-learn.org/stable/tutorial/index.html"],"Intermediate|4 weekends"],
+["p_paper","p","Reproduce a research paper",["dl"],"Re-create the results of a published AI paper and report what matched and what did not. The clearest signal for research roles.","Choose a well-cited paper with public data; implement the method yourself; compare your numbers with the paper; try one change of your own; write it up like a short paper",["arXiv|https://arxiv.org/","PyTorch tutorials|https://pytorch.org/tutorials/"],"Advanced|6–10 weekends"],
+["p_detector","p","Object detector on your own photos",["cv"],"Teach a model to find something specific in pictures you took yourself. Real data makes the project memorable.","Collect and label 200 photos; fine-tune a pretrained detector; measure accuracy on photos it has not seen; run it live on a webcam or phone",["OpenCV tutorials|https://docs.opencv.org/4.x/d9/df8/tutorial_root.html"],"Intermediate|3–4 weekends"],
+["p_evals","p","Test suite for an AI assistant",["llmapps"],"Measure whether an AI app gives good answers, and catch it when it gets worse. A growing part of every AI product team.","Write 50 test questions with expected answers; score your app automatically; compare two prompts or models; track results over time in a small report",["Hugging Face LLM course|https://huggingface.co/learn"],"Intermediate|2–3 weekends"],
+["p_serve","p","Fast model-serving benchmark",["gpuprog","mlops"],"Make an AI model answer faster and cheaper, and prove it with numbers. Exactly what AI infrastructure teams do.","Serve an open model locally; measure speed and memory; try batching and quantization; plot the trade-offs; explain which setup you would choose and why",["vLLM docs|https://docs.vllm.ai/","CUDA programming guide|https://docs.nvidia.com/cuda/cuda-c-programming-guide/"],"Advanced|3–4 weekends"],
+["p_rlagent","p","Game-playing learning agent",["rl"],"An agent that teaches itself to play a simple game by trial and error. Fun to show and a solid step toward robot learning.","Train an agent on a classic control task; plot its learning curve; tune two settings and compare; record a video of it before and after training",["Gymnasium|https://gymnasium.farama.org/"],"Intermediate|2–3 weekends"],
+["p_prd","p","Product spec and launch plan",["uxui","viz"],"Write the document a team would build from: the problem, the users, what to build first and how you will know it worked.","Interview five potential users; define the problem and goals; list features and cut them to a first version; set success metrics; present it in ten slides",[],"Starter|2 weekends"],
+["p_demo","p","Technical demo and walkthrough video",["backend","cloud"],"Explain a technical product clearly to a customer who is not an engineer. The heart of sales and solutions roles.","Build a small demo on a cloud service; record a ten-minute walkthrough; answer five likely customer questions in writing; get feedback from a non-technical friend",[],"Starter|1–2 weekends"],
+["p_docs","p","Tutorial for an open-source tool",["git","web"],"Write the guide you wish existed for a tool you use, and get it merged into the project. Developer advocates are hired on writing like this.","Pick a tool you know; find a gap in its documentation; write a step-by-step tutorial with code; submit it as a pull request; turn it into a short video",["Diátaxis documentation guide|https://diataxis.fr/"],"Starter|2 weekends"],
+["p_mvp","p","Launch a tiny product and find 10 users",["fullstack","exper"],"Build the smallest useful version of an idea and get real people to use it. Teaches more about startups than any course.","Pick a problem you or friends have; build the simplest version in a weekend; put up a landing page; get ten people to try it; measure what they actually do and decide what to change",["Y Combinator Startup School|https://www.startupschool.org/"],"Intermediate|4–6 weekends"],
+["p_backtest","p","Backtest a simple trading rule",["pydata","stats","exper"],"Test an investing rule on historical prices and judge it honestly. Teaches the statistics quant roles care about. Practice only; not financial advice.","Load historical price data; code a simple rule; include costs and avoid looking into the future; compare against just buying and holding; write up why the result might not hold",["Kaggle time series course|https://www.kaggle.com/learn/time-series"],"Intermediate|2–3 weekends"],
+["p_routes","p","Delivery route optimizer",["optim","py"],"Find the shortest routes for a set of deliveries with real constraints. A typical operations research problem.","Model 20 delivery stops with time windows; solve it with an optimization library; compare with a simple greedy approach; show the routes on a map",["Google OR-Tools|https://developers.google.com/optimization"],"Intermediate|2 weekends"],
+["p_fhir","p","Patient-record app on synthetic data",["healthinfo","backend"],"A small clinical records app built on the same data standard hospitals use, with fake patients so privacy is safe.","Generate synthetic patients; load them through a FHIR server or files; build a page that shows a patient timeline; add search and simple access rules",["Synthea synthetic patients|https://synthetichealth.github.io/synthea/","HL7 FHIR overview|https://hl7.org/fhir/overview.html"],"Intermediate|3–4 weekends"],
+["p_ecgml","p","Heart-rhythm classifier",["biosig","ml"],"Train a model to spot abnormal heart rhythms in real ECG recordings. Combines signal processing with machine learning.","Download an open ECG database; clean the signals and find each beat; extract features; train and evaluate a classifier; explain where it fails",["PhysioNet|https://physionet.org/"],"Intermediate|3–4 weekends"],
+["p_segment","p","Medical image segmentation model",["medimg","dl"],"Teach a model to outline an organ, tooth or tumour in scans. The main task in medical imaging AI.","Pick a public imaging challenge dataset; train a U-Net style model; measure overlap with expert outlines; show examples of good and bad results",["MONAI|https://monai.io/","Grand Challenge|https://grand-challenge.org/"],"Advanced|4–6 weekends"],
+["p_dicom","p","Medical scan viewer",["medimg","gfx"],"A program that opens hospital scan files and lets you scroll, zoom and measure. Close to what imaging software teams build.","Read DICOM files from a public dataset; display slices with scroll and zoom; adjust brightness and contrast; add a distance-measuring tool",["3D Slicer|https://www.slicer.org/","The Cancer Imaging Archive|https://www.cancerimagingarchive.net/"],"Intermediate|3–4 weekends"],
+["p_dhf","p","Mini design history file",["medreg"],"The paperwork that proves a medical device is safe, written for a small device you designed. Regulatory teams hire for this skill.","Write user needs and requirements for a simple device; do a basic risk analysis; plan verification tests; trace each requirement to a test; keep it all in one organised folder",["FDA device advice|https://www.fda.gov/medical-devices/device-advice-comprehensive-regulatory-assistance"],"Intermediate|2–3 weekends"],
+["p_genome","p","Genetic variant analysis pipeline",["bioinfo"],"Process raw DNA sequencing data into a list of genetic differences, reproducibly. Standard work in bioinformatics.","Download a small public sequencing dataset; check quality; align reads to a reference; call variants; wrap every step in a reproducible script",["Rosalind|https://rosalind.info/problems/list-view/"],"Advanced|4–6 weekends"],
+["p_trial","p","Re-analyse a published clinical study",["exper","stats"],"Take open data from a published study and check whether you reach the same conclusions. Core training for biostatistics.","Find a study with shared data; read its methods closely; repeat the main analysis; try one sensible alternative analysis; write a short report on agreement and limits",["OpenIntro Statistics|https://www.openintro.org/book/os/"],"Intermediate|3 weekends"],
+["p_dentalcad","p","Digital crown or aligner model",["dental"],"Turn a public 3D tooth scan into a designed restoration or aligner step. Shows you can use the same workflow as dental labs.","Find an open intraoral scan; clean and segment the mesh; design a simple crown or one aligner stage; check thickness and fit; prepare it for 3D printing",["3D Slicer|https://www.slicer.org/","Blender|https://www.blender.org/"],"Intermediate|3–4 weekends"],
+["p_hand","p","3D-printed assistive grip or hand",["implants"],"Design and print a device that helps someone hold things, using open designs as a starting point.","Study an open assistive hand design; adapt it to a measured hand size; print and assemble it; test grip on everyday objects; document every revision",["e-NABLE community|https://enablingthefuture.org/"],"Intermediate|3–4 weekends"],
+["p_eeg","p","Brain-signal classifier",["biosig","ml"],"Read EEG brain recordings and detect what a person was doing or imagining. The first step toward brain-computer interfaces.","Download an open motor imagery EEG dataset; filter and epoch the signals; extract features; train a classifier; report accuracy per person",["MNE-Python|https://mne.tools/"],"Advanced|4 weekends"],
+["p_equipment","p","Hospital equipment tracker",["db","medinstr"],"A system that tracks medical devices, their safety checks and repairs. Mirrors the daily work of clinical engineering teams.","Design tables for devices, checks and repairs; add due-date reminders for safety tests; build a simple dashboard of overdue items; write a short user guide",[],"Starter|2–3 weekends"],
+["p_board","p","Custom sensor board, made and tested",["pcb","sensors"],"Design your own circuit board, order it, solder it and prove it works. The defining project for hardware roles.","Draw the schematic; lay out a two-layer board; order a few boards; assemble and debug them; measure performance and write a test report",["KiCad docs|https://docs.kicad.org/"],"Advanced|4–6 weekends"],
+["p_firmware","p","Low-power sensor node firmware",["rtos","embc"],"Firmware that reads sensors, sleeps to save battery and recovers from errors on its own. Exactly what embedded teams ship.","Run sensor reading, logging and radio as separate tasks; add deep sleep; measure battery current; add a watchdog that recovers from crashes; estimate battery life",["Wokwi simulator|https://wokwi.com/"],"Advanced|4 weekends"],
+["p_weather","p","Weather station with cloud dashboard",["iot","cloud"],"A small device outside your window that sends readings to a live web dashboard. The classic end-to-end IoT build.","Read temperature, humidity and pressure; send data over wifi with MQTT; store it in the cloud; chart it on a live dashboard; alert on unusual readings",["MQTT|https://mqtt.org/","Home Assistant|https://www.home-assistant.io/"],"Intermediate|3 weekends"],
+["p_fpgacpu","p","Your own CPU on an FPGA",["hdl","comparch"],"Describe a simple processor in hardware code and run programs on it. A standout project for FPGA and chip roles.","Write and test small modules on HDLBits; build an ALU and registers; assemble a simple CPU; run a program that draws to a screen or blinks LEDs",["HDLBits|https://hdlbits.01xz.net/","Nandland|https://nandland.com/"],"Advanced|6–8 weekends"],
+["p_tapeout","p","Design a tiny real chip",["vlsi"],"Submit a small digital design that gets manufactured on a shared real chip. Very rare and impressive for a student.","Design a small circuit in Verilog; simulate and verify it; follow the shared-chip flow to harden it; submit it to a shuttle run; test it when the chip arrives",["Tiny Tapeout|https://tinytapeout.com/"],"Advanced|6–10 weekends"],
+["p_testbench","p","Verification testbench for a chip block",["vlsi"],"Prove a hardware design works by attacking it with thousands of automatic tests. Verification is a large share of chip jobs.","Pick a FIFO or UART design; write a self-checking testbench; add random tests and coverage goals; find and fix at least one bug; report coverage",["EDA Playground|https://www.edaplayground.com/"],"Advanced|3–4 weekends"],
+["p_adsb","p","Track aircraft with a radio dongle",["rf"],"Use a cheap USB radio to decode the position signals aircraft broadcast, then put them on a map.","Set up a software-defined radio; capture aircraft transponder signals; decode positions; plot live aircraft on a map; explain the signal chain in a diagram",["RTL-SDR quick start|https://www.rtl-sdr.com/qsg/","GNU Radio tutorials|https://wiki.gnuradio.org/index.php/Tutorials"],"Intermediate|2 weekends"],
+["p_pedal","p","Real-time audio effects pedal",["signals","embc"],"A device that changes guitar or voice sound live: echo, distortion or tremolo. A fun showcase for DSP and audio roles.","Design filters and effects in Python first; port them to a microcontroller; keep delay under 10 milliseconds; add knobs to control effects; record before and after audio",["Think DSP|https://greenteapress.com/wp/think-dsp/"],"Intermediate|4 weekends"],
+["p_transistor","p","Transistor simulation and lab report",["semidev"],"Simulate how a transistor behaves, compare with measurements and explain the gap like a fab engineer would.","Simulate a MOSFET with free online tools; vary channel length and doping; measure a real transistor curve if you can; write a report comparing theory, simulation and data",["nanoHUB|https://nanohub.org/"],"Intermediate|2–3 weekends"],
+["p_robotcar","p","Self-driving robot car",["sensors","control"],"A small car that follows a line or avoids obstacles on its own. The classic first robot.","Build a two-wheel chassis; read distance or line sensors; tune a PID controller for smooth steering; log sensor data and plot it; film a full run",["Arduino docs|https://docs.arduino.cc/","Python Control Systems Library|https://python-control.readthedocs.io/"],"Starter|3 weekends"],
+["p_rosnav","p","Robot that maps a room and navigates it",["ros","percep","plan"],"A simulated or real robot that builds a map, knows where it is and drives to goals. The everyday stack of robotics software teams.","Simulate a wheeled robot with a lidar; build a map with SLAM; send navigation goals; add a new obstacle and watch it replan; record a demo video",["ROS 2 tutorials|https://docs.ros.org/en/jazzy/Tutorials.html"],"Advanced|4–6 weekends"],
+["p_arm","p","3D-printed robot arm",["mechatronics","kin"],"A desk-sized arm you design, print and program to pick up objects. Brings together mechanics, electronics and code.","Model the links in CAD; print and assemble with hobby servos; write inverse kinematics; make it pick and place a small object; measure how accurate it is",["FreeCAD|https://www.freecad.org/"],"Advanced|6–8 weekends"],
+["p_plc","p","Conveyor sorting line with a PLC",["control","sensors"],"Program a simulated factory line that sorts items by colour or size. Mirrors the first tasks of an automation engineer.","Install a free PLC simulator; program start, stop and emergency stop; sort items by sensor reading; add a fault alarm; document the logic",["OpenPLC|https://autonomylogic.com/"],"Intermediate|2–3 weekends"],
+["p_dronesim","p","Autonomous drone mission in simulation",["drone"],"Plan and fly an automatic drone mission safely in a simulator before any real flight.","Run the flight software in simulation; script take-off, waypoints and landing; add a geofence; test a lost-signal failsafe; analyse the flight log",["PX4 docs|https://docs.px4.io/"],"Intermediate|3 weekends"],
+["p_lanes","p","Lane keeping in a driving simulator",["auto"],"A virtual car that stays in its lane and stops for obstacles. A focused slice of self-driving work.","Set up a free driving simulator; detect lane lines from the camera; steer with a controller; add emergency braking; measure how long it drives without a mistake",["CARLA simulator|https://carla.org/"],"Advanced|4–6 weekends"],
+["p_twin","p","Digital twin of a real machine",["numer","sim"],"Simulate a real object, such as a fan or a heating mug, and check the simulation against measurements. The core of simulation engineering.","Measure a simple real system over time; build a simulation of it; tune the model to match; predict a new situation and test the prediction; report the error",["SciPy tutorial|https://docs.scipy.org/doc/scipy/tutorial/index.html"],"Intermediate|3 weekends"],
+["p_solarcharge","p","Solar charge controller",["powerel","mcu"],"A small circuit that charges a battery from a solar panel efficiently and safely. Shows real power electronics skill.","Simulate the converter first; build it on a board; add maximum power point tracking in code; measure efficiency at several loads; add over-charge protection",["LTspice|https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html"],"Advanced|4–6 weekends"],
+["p_battery","p","Battery pack model and safety logic",["battery"],"Model how a battery pack heats and ages, then write the safety logic a battery management system would run.","Simulate a cell with an open battery model; scale it to a small pack; estimate state of charge; add over-temperature and over-voltage protection; test with a drive-cycle profile",["PyBaMM|https://pybamm.org/"],"Advanced|4 weekends"],
+["p_solarstudy","p","Rooftop solar and storage study",["grid"],"Work out whether solar panels and a battery make sense for a real building, with numbers.","Estimate a building's electricity use by hour; model solar output for its location; size a battery; compare costs and savings over 20 years; present a recommendation",["NREL PVWatts|https://pvwatts.nrel.gov/","PyPSA|https://pypsa.org/"],"Starter|2 weekends"],
+["p_matselect","p","Material selection report",["materials"],"Choose the best material for a real part and justify it with data, like a materials engineer does every week.","Pick a part such as a bike frame or phone case; list requirements; compare candidate materials using public data; test a simple sample if possible; write a recommendation",["Materials Project|https://materialsproject.org/"],"Starter|2 weekends"],
+["p_spectro","p","DIY spectrometer",["optics","sensors"],"Split light into colours and measure them with a camera, then identify light sources. A hands-on start in photonics.","Build a simple spectrometer from a diffraction grating and a camera; calibrate it with known lamps; measure sunlight and LEDs; compare with published spectra",["OpenStax University Physics Vol. 3|https://openstax.org/details/books/university-physics-volume-3"],"Starter|2 weekends"],
+["p_quantum","p","Quantum algorithm notebook",["qcomp"],"Implement a well-known quantum algorithm, run it on a simulator and explain every step for beginners.","Build and simulate a Bell state; implement Grover search on three qubits; add noise and see how results change; run on free cloud hardware if available; explain it in a notebook",["IBM Quantum Learning|https://quantum.cloud.ibm.com/learning"],"Intermediate|3 weekends"],
+["p_research","p","Research project with a supervisor",["gradschool"],"Join a lab or find a supervisor and contribute to a real research question. The strongest signal for graduate school and R&D jobs.","Read three recent papers in a topic you like; email two professors with a specific idea; run a small study or experiment; present a poster or write a short paper",["arXiv|https://arxiv.org/"],"Advanced|one semester"],
+
+["j_swe","j","Software engineer",["dsa","backend","frontend","hack","p_todo","p_api"],"Builds and maintains products. The broadest entry point; every industry hires. Internships are the usual way in.","",[]],
+["j_fe","j","Frontend engineer",["frontend","uxui","p_site","p_clone","p_a11y"],"Builds the interfaces people use in browsers and apps.","",[]],
+["j_be","j","Backend engineer",["backend","db","p_todo","p_api"],"Builds the servers, databases and APIs behind products.","",[]],
+["j_fs","j","Full-stack engineer",["fullstack","p_site","p_notesapp"],"Works on both the interface and the server. Common in startups and small teams.","",[]],
+["j_mob","j","Mobile developer",["mobile","p_mobileapp"],"Builds iOS and Android apps, from consumer products to hospital tools.","",[]],
+["j_devops","j","DevOps / platform engineer",["k8s","cloud","p_cicd","p_cloudresume"],"Builds the pipelines and infrastructure other engineers deploy on.","",[]],
+["j_sre","j","Site reliability engineer",["distsys","k8s","p_monitor","p_cicd"],"Keeps large systems fast and available.","",[]],
+["j_cloud","j","Cloud solutions architect",["cloud","net","p_cloudresume"],"Designs cloud systems for companies.","",[]],
+["j_sec","j","Security engineer",["sec","cloud","p_homelab","p_ctf"],"Defends systems and finds weaknesses before attackers do.","",[]],
+["j_pen","j","Penetration tester",["sec","p_ctf","p_homelab"],"Paid to break into systems with permission, to show where they are weak before attackers do.","",[]],
+["j_secres","j","Security / cryptography researcher",["crypto","sec","p_cryptopals","p_ctf"],"Studies new attacks and designs new protections.","",[]],
+["j_sys","j","Systems programmer",["os","cfam","p_shell"],"Writes operating systems, drivers, databases and runtimes.","",[]],
+["j_comp","j","Compiler engineer",["comp","p_lang"],"Builds the tools that turn code into fast programs.","",[]],
+["j_game","j","Game developer",["game","cfam","p_game"],"Builds gameplay, tools and engines.","",[]],
+["j_gfx","j","Graphics engineer",["gfx","game","p_raytracer","p_game"],"Builds rendering, shaders and visual effects pipelines.","",[]],
+["j_ux","j","UX / product designer",["uxui","p_uxcase","p_site"],"Designs how products work, based on research with users.","",[]],
+["j_pm","j","Product manager",["uxui","viz","backend","p_prd","p_abtest"],"Decides what to build and why. Technical background helps a lot.","",[]],
+["j_analyst","j","Data analyst",["dashtools","db","p_datastory","p_dashboard"],"Turns company data into answers and dashboards.","",[]],
+["j_ds","j","Data scientist",["ml","exper","kaggle","p_datastory","p_abtest"],"Builds models and experiments to guide decisions.","",[]],
+["j_de","j","Data engineer",["db","cloud","pydata","pyauto","p_pipeline","p_scrape"],"Builds the pipelines that move and clean data at scale.","",[]],
+["j_mle","j","ML engineer",["mlops","ml","p_mlapp"],"Puts models into production and keeps them working.","",[]],
+["j_airs","j","AI research scientist",["dl","rl","optim","p_paper","p_rlagent"],"Invents new methods. Usually needs a master's or PhD.","",[]],
+["j_cve","j","Computer vision engineer",["cv","p_detector"],"Builds systems that understand images and video.","",[]],
+["j_llm","j","LLM / AI application engineer",["llmapps","p_evals"],"Builds products powered by language models.","",[]],
+["j_gpu","j","GPU / HPC engineer",["gpuprog","p_serve"],"Makes AI and scientific code run fast on parallel hardware.","",[]],
+["j_aiinfra","j","AI infrastructure engineer",["gpuprog","mlops","p_serve"],"Builds the systems that train and serve large models.","",[]],
+["j_quant","j","Quantitative analyst",["exper","optim","p_backtest"],"Builds mathematical models for finance and trading.","",[]],
+["j_or","j","Operations research analyst",["optim","p_routes"],"Optimizes logistics, scheduling and supply chains.","",[]],
+["j_biostat","j","Biostatistician",["exper","bioinfo","p_trial","p_abtest"],"Designs and analyzes clinical studies.","",[]],
+["j_bioinf","j","Bioinformatics scientist",["bioinfo","ml","p_genome"],"Analyzes genomic and biological data.","",[]],
+["j_hi","j","Health informatics engineer",["healthinfo","p_fhir"],"Builds hospital data systems and clinical software.","",[]],
+["j_medai","j","Medical AI engineer",["medimg","dl","p_segment","p_ecgml"],"Builds models that read scans and signals.","",[]],
+["j_imgsw","j","Medical imaging software engineer",["medimg","gfx","p_dicom"],"Builds viewers and processing tools for scanners and clinics.","",[]],
+["j_meddev","j","Medical device engineer",["medinstr","medreg","embc","wearable","p_dhf"],"Designs and tests devices such as monitors, pumps and implants.","",[]],
+["j_reg","j","Regulatory and quality engineer",["medreg","p_dhf"],"Gets medical products approved and keeps them compliant.","",[]],
+["j_bme","j","Clinical biomedical engineer",["medinstr","biosig","p_equipment","p_ecgml"],"Manages and evaluates equipment inside hospitals.","",[]],
+["j_neuro","j","Neurotech / BCI engineer",["rehab","ml","p_eeg"],"Builds brain-computer interfaces and neural devices.","",[]],
+["j_dentaleng","j","Dental technology engineer",["dental","p_dentalcad"],"Designs scanners, CAD software and devices for dentistry.","",[]],
+["j_dentalai","j","Dental imaging AI scientist",["dental","dl","p_segment","p_dentalcad"],"Builds models that read dental X-rays and 3D scans.","",[]],
+["j_prost","j","Prosthetics / implant engineer",["implants","p_hand"],"Designs custom implants and prosthetic devices.","",[]],
+["j_emb","j","Embedded / firmware engineer",["rtos","embc","p_firmware","p_arduino"],"Writes the software inside devices, from earbuds to cars.","",[]],
+["j_iot","j","IoT engineer",["iot","cloud","p_weather","p_arduino"],"Builds connected devices and the cloud behind them.","",[]],
+["j_hw","j","Hardware engineer",["pcb","sensors","p_board","p_arduino"],"Designs circuits and boards for products, from sensors to consumer devices.","",[]],
+["j_fpga","j","FPGA engineer",["hdl","p_fpgacpu"],"Builds custom hardware logic that runs faster than software, used in finance, telecom and imaging.","",[]],
+["j_asic","j","ASIC / VLSI design engineer",["vlsi","p_tapeout","p_fpgacpu"],"Designs processors and accelerators at the circuit level. Usually needs a master's degree or strong chip-design projects.","",[]],
+["j_verif","j","Design verification engineer",["vlsi","p_testbench"],"Proves chips work before they are made. Large share of chip jobs.","",[]],
+["j_semi","j","Semiconductor process engineer",["semidev","p_transistor"],"Runs and improves the fab steps that make chips.","",[]],
+["j_rf","j","RF / telecom engineer",["rf","net","p_adsb"],"Designs radio and network systems.","",[]],
+["j_dsp","j","DSP / audio engineer",["signals","embc","p_pedal"],"Processes sound, radio and sensor signals in real time.","",[]],
+["j_robsw","j","Robotics software engineer",["ros","percep","plan","roblearn","p_rosnav"],"Builds the software that lets robots sense and act.","",[]],
+["j_robctl","j","Robotics controls engineer",["control","kin","p_robotcar","p_physim"],"Designs the feedback that makes robots move precisely.","",[]],
+["j_mecha","j","Mechatronics engineer",["mechatronics","p_arm","p_robotcar"],"Designs machines that combine mechanics, electronics and code.","",[]],
+["j_auto","j","Industrial automation engineer",["control","sensors","p_plc","p_arduino"],"Automates factories with PLCs, sensors and robots.","",[]],
+["j_drone","j","Drone / UAV engineer",["drone","p_dronesim"],"Designs and programs unmanned aircraft.","",[]],
+["j_av","j","Autonomous vehicle engineer",["auto","p_lanes"],"Works on self-driving and delivery vehicles.","",[]],
+["j_sim","j","Simulation engineer",["numer","sim","p_twin","p_physim"],"Builds simulations of physical systems for design and testing.","",[]],
+["j_power","j","Power electronics engineer",["powerel","p_solarcharge"],"Designs chargers, inverters and motor drives.","",[]],
+["j_bat","j","Battery / EV engineer",["battery","p_battery"],"Works on cells, packs and charging for electric vehicles.","",[]],
+["j_grid","j","Power systems engineer",["grid","p_solarstudy"],"Plans and runs grids with renewable energy.","",[]],
+["j_qe","j","Quantum engineer / researcher",["qcomp","p_quantum"],"Builds quantum software or hardware. Mostly via grad school.","",[]],
+["j_photo","j","Photonics / optical engineer",["optics","sensors","p_spectro"],"Designs lasers, cameras, lidar and fibre systems.","",[]],
+["j_mat","j","Materials engineer",["materials","p_matselect"],"Chooses and develops materials for products.","",[]],
+["j_sales","j","Solutions / sales engineer",["backend","cloud","p_demo","p_api"],"Explains and fits technical products to customer needs.","",[]],
+["j_consult","j","Technical consultant",["pydata","cloud","p_datastory","p_demo"],"Solves technology problems for many different clients.","",[]],
+["j_dev","j","Developer advocate / technical creator",["git","frontend","p_docs","p_site"],"Explains tech through docs, talks and videos.","",[]],
+["j_founder","j","Startup founder",["fullstack","exper","p_mvp"],"Builds a company around a product you ship yourself.","",[]],
+["j_prof","j","University researcher / lecturer",["gradschool","p_research"],"Research and teaching in a university.","",[]],
+["j_rnd","j","Industry R&D scientist",["gradschool","semidev","p_research"],"Research roles inside companies and labs.","",[]]
 ];
 
 const INFO = {
@@ -744,7 +848,9 @@ var TYPE_PL={s:'Skills',t:'Tools',p:'Projects',f:'Fields'};
 var TYPE_HELP={s:'Something to learn',t:'Software or hardware you use',p:'Something you build to prove it',f:'An area that groups related work'};
 var ROOTS={prog:'Code',mp:'Math and physics',elec:'Electronics'};
 
-var D=RAW.map(function(r){return {id:r[0],t:r[1],name:r[2],p:r[3],note:r[4],proj:r[5],res:(r[6]||[]).map(function(s){var i=s.indexOf('|');return {l:s.slice(0,i),u:s.slice(i+1)};}),c:[]};});
+var D=RAW.map(function(r){var sz=(r[7]||'').split('|');return {id:r[0],t:r[1],name:r[2],p:r[3],note:r[4],proj:r[5],lvl:sz[0]||'',time:sz[1]||'',res:(r[6]||[]).map(function(s){var i=s.indexOf('|');return {l:s.slice(0,i),u:s.slice(i+1)};}),c:[]};});
+var LEVELS=['Starter','Intermediate','Advanced'];
+var LEVEL_HELP={Starter:'Good first builds. Needs only the first few skills.',Intermediate:'Bigger builds that join several skills together.',Advanced:'Showcase pieces for a specific role. Usually several weeks.'};
 var M={};D.forEach(function(n){M[n.id]=n;});
 D.forEach(function(n){n.p.forEach(function(p){M[p].c.push(n.id);});});
 var depth={};
@@ -811,6 +917,15 @@ function specimen(r){
     (n?'<span class="prog">'+n+' of '+t.length+' done</span>':'<span class="steps">'+t.length+' skills</span>')+'</span></a></li>';
 }
 function chip(id){var n=M[id];return '<a class="chip t-'+n.t+(done.has(id)?' done':'')+'" href="#/'+(n.t==='j'?'role':'skill')+'/'+id+'">'+glyph(n.t,14)+esc(n.name)+(done.has(id)?' <span class="muted" aria-label="done">'+IC.tick+'</span>':'')+'</a>';}
+function sizeTag(n){
+  if(!n.lvl)return '';var k=LEVELS.indexOf(n.lvl);
+  return '<span class="size" title="'+esc(n.lvl)+' level"><span class="lv" aria-hidden="true">'+[0,1,2].map(function(i){return '<i'+(i<=k?' class="on"':'')+'></i>';}).join('')+'</span>'+esc(n.lvl)+(n.time?' · '+esc(n.time):'')+'</span>';
+}
+function practice(n){
+  if(!n.proj)return '';
+  if(n.t==='p')return '<ol class="steps">'+n.proj.split('; ').map(function(x){return '<li>'+esc(x.charAt(0).toUpperCase()+x.slice(1))+'</li>';}).join('')+'</ol>';
+  return '<p class="try"><b>Try this</b>'+esc(n.proj)+'</p>';
+}
 function resources(n){
   if(!n.res.length)return '';
   return '<ul class="res">'+n.res.map(function(r){return '<li>'+IC.ext+'<a href="'+esc(r.u)+'" target="_blank" rel="noopener">'+esc(r.l)+'</a></li>';}).join('')+'</ul>';
@@ -881,10 +996,10 @@ function viewRole(id){
       var need=n.p.filter(function(p){return inT.has(p)&&!done.has(p);});
       return '<li class="stop" data-id="'+n.id+'"><div class="srow">'+
         '<label class="check"><input type="checkbox" data-id="'+n.id+'"'+(done.has(n.id)?' checked':'')+' aria-label="Mark '+esc(n.name)+' as done"><span>'+IC.tick+'</span></label>'+
-        '<div class="sbody"><div class="sname"><a href="#/skill/'+n.id+'">'+esc(n.name)+'</a><span class="tag t-'+n.t+'">'+glyph(n.t,13)+TYPES[n.t]+'</span><span class="pill next" hidden>Next up</span></div>'+
+        '<div class="sbody"><div class="sname"><a href="#/skill/'+n.id+'">'+esc(n.name)+'</a><span class="tag t-'+n.t+'">'+glyph(n.t,13)+TYPES[n.t]+'</span>'+sizeTag(n)+'<span class="pill next" hidden>Next up</span></div>'+
         '<p class="snote">'+esc(n.note)+'</p>'+
         (need.length?'<p class="needs">Easier after: '+need.map(function(p){return esc(M[p].name);}).join(', ')+'</p>':'')+
-        ((n.proj||n.res.length)?'<details class="more"><summary>'+IC.chev+'Practice project and free resources</summary><div class="inner">'+(n.proj?'<p class="try"><b>Try this</b>'+esc(n.proj)+'</p>':'')+resources(n)+'</div></details>':'')+
+        ((n.proj||n.res.length)?'<details class="more"><summary>'+IC.chev+(n.t==='p'?'How to build it':'Practice project and free resources')+'</summary><div class="inner">'+practice(n)+resources(n)+'</div></details>':'')+
         '</div></div></li>';}).join('')+'</ol></section>';
   }).join('');
   var rel=g.ids.filter(function(x){return x!==id;}).map(function(x){return M[x];});
@@ -902,7 +1017,10 @@ function viewRole(id){
     '<div class="trailhead"><div><h2>How to get there</h2><p>'+trail.length+' skills in '+depths.length+' stages. Earlier stages come first; tick each one off as you learn it. Ticks are shared across every trail.</p></div>'+
       '<div class="meter" aria-live="polite"><div class="bar"><i id="mbar"></i></div><b id="mtext"></b></div></div>'+
     '<div class="trail'+(drawOnce(id)?' draw':'')+'" id="trail">'+stagesHtml+'</div>'+
-    '<div class="finish">'+IC.summit+'<div><b>Then: '+esc(r.name)+'</b><p>Build two or three of the practice projects into a portfolio, then apply for internships or junior roles.</p></div></div>'+
+    (function(){var ps=trail.filter(function(x){return x.t==='p';});if(!ps.length)return '';
+     return '<section class="folio" aria-labelledby="foliot"><h2 id="foliot">Your portfolio for this role</h2><p>These '+ps.length+' projects are on the trail above. Finished, they show an employer you can already do the work. Put each one on GitHub with a short write-up.</p><ul>'+
+       ps.map(function(x){return '<li><a href="#/skill/'+x.id+'">'+glyph('p',14)+'<b>'+esc(x.name)+'</b>'+(done.has(x.id)?'<span class="ok" aria-label="built">'+IC.tick+'</span>':'')+sizeTag(x)+'</a></li>';}).join('')+'</ul></section>';})()+
+    '<div class="finish">'+IC.summit+'<div><b>Then: '+esc(r.name)+'</b><p>With the skills learned and the portfolio built, apply for internships or junior roles. Link your portfolio site in every application.</p></div></div>'+
     (rel.length?'<section class="rel" aria-labelledby="relt"><h2 id="relt">Nearby roles in '+esc(g.name)+'</h2><ul class="plate">'+rel.map(specimen).join('')+'</ul></section>':'')+
   '</div>';
   var t=$('#trail');
@@ -933,17 +1051,17 @@ function viewSkill(id){
   var used=rolesUsing(id);
   main.innerHTML=
   '<section class="khead"><div class="wrap">'+
-    '<a class="back" href="#/skills">'+IC.back+'All skills</a><br>'+
+    (n.t==='p'?'<a class="back" href="#/projects">'+IC.back+'All projects</a><br>':'<a class="back" href="#/skills">'+IC.back+'All skills</a><br>')+
     '<h1 class="view-title" tabindex="-1">'+esc(n.name)+'</h1><p class="lede">'+esc(n.note)+'</p>'+
-    '<span class="type t-'+n.t+'">'+glyph(n.t,16)+TYPES[n.t]+' · '+TYPE_HELP[n.t].toLowerCase()+'</span><br>'+
-    '<button class="btn markbtn'+(done.has(id)?'':' primary')+'" type="button" id="mark" aria-pressed="'+done.has(id)+'">'+(done.has(id)?IC.tick+'Learned, undo':'Mark as learned')+'</button>'+
+    '<span class="type t-'+n.t+'">'+glyph(n.t,16)+TYPES[n.t]+' · '+TYPE_HELP[n.t].toLowerCase()+'</span>'+(n.lvl?' &nbsp; '+sizeTag(n):'')+'<br>'+
+    '<button class="btn markbtn'+(done.has(id)?'':' primary')+'" type="button" id="mark" aria-pressed="'+done.has(id)+'">'+(done.has(id)?IC.tick+(n.t==='p'?'Built, undo':'Learned, undo'):(n.t==='p'?'Mark as built':'Mark as learned'))+'</button>'+
   '</div></section>'+
   '<div class="wrap"><div class="kgrid"><div>'+
-    (n.proj?'<section><h2>Try this</h2><p class="try">'+esc(n.proj)+'</p></section>':'')+
-    (n.res.length?'<section><h2>Free places to learn it</h2>'+resources(n)+'</section>':'')+
+    (n.proj?'<section><h2>'+(n.t==='p'?'How to build it':'Try this')+'</h2>'+(n.t==='p'?practice(n):'<p class="try">'+esc(n.proj)+'</p>')+'</section>':'')+
+    (n.res.length?'<section><h2>'+(n.t==='p'?'Free guides and tools':'Free places to learn it')+'</h2>'+resources(n)+'</section>':'')+
     '<section><h2>Learn these first</h2>'+(n.p.length?'<div class="chips">'+n.p.map(chip).join('')+'</div>':'<p class="muted">Nothing. This is a starting point, so you can begin here today.</p>')+'</section>'+
     '<section><h2>What it opens up</h2>'+(n.c.length?'<div class="chips">'+n.c.map(chip).join('')+'</div>':'<p class="muted">Nothing further on this map. It leads straight to roles.</p>')+'</section>'+
-  '</div><section><h2>Roles that use it</h2>'+(used.length?'<p class="muted" style="margin-bottom:12px">'+used.length+' of '+roles.length+' roles have this on their trail.</p><ul class="rolelist">'+used.map(function(r){return '<li><a class="g-'+RG[r.id]+'" href="#/role/'+r.id+'"><i class="swatch"></i>'+esc(r.name)+'<small>'+esc(GM[RG[r.id]].name)+'</small></a></li>';}).join('')+'</ul>':'<p class="muted">No role on this map needs it directly yet.</p>')+'</section></div></div>';
+  '</div><section><h2>'+(n.t==='p'?'Roles it helps you get':'Roles that use it')+'</h2>'+(used.length?'<p class="muted" style="margin-bottom:12px">'+used.length+' of '+roles.length+' roles have this on their trail.</p><ul class="rolelist">'+used.map(function(r){return '<li><a class="g-'+RG[r.id]+'" href="#/role/'+r.id+'"><i class="swatch"></i>'+esc(r.name)+'<small>'+esc(GM[RG[r.id]].name)+'</small></a></li>';}).join('')+'</ul>':'<p class="muted">No role on this map needs it directly yet.</p>')+'</section></div></div>';
   $('#mark').onclick=function(){setDone(id,!done.has(id));viewSkill(id);$('#mark').focus();};
 }
 
@@ -953,6 +1071,33 @@ function viewRoles(){
     GROUPS.map(function(g){return '<section class="gsec g-'+g.k+'" id="'+g.k+'" aria-labelledby="h-'+g.k+'"><header><h2 id="h-'+g.k+'"><i class="swatch"></i>'+esc(g.name)+'</h2><p>'+esc(g.blurb)+'</p></header><ul class="plate">'+g.ids.map(function(x){return specimen(M[x]);}).join('')+'</ul></section>';}).join('')+'</div>';
 }
 
+var pf=load('tep-pf',{lvl:'all',g:'all'});
+function viewProjects(){
+  var projs=skills.filter(function(n){return n.t==='p';});
+  function gOf(n){var s=new Set(rolesUsing(n.id).map(function(r){return RG[r.id];}));return s;}
+  function chipBtn(kind,val,label,cls){var on=pf[kind]===val;return '<button type="button" class="chip'+(cls?' '+cls:'')+'" data-k="'+kind+'" data-v="'+val+'" aria-pressed="'+on+'">'+label+'</button>';}
+  main.innerHTML='<div class="wrap"><header class="pagehead"><h1 class="view-title" tabindex="-1">'+projs.length+' portfolio projects</h1>'+
+    '<p class="lede">Projects turn what you learned into proof you can show an employer. Each one lists the skills it needs, the steps to build it and the roles it helps you get. Start with a Starter project, then pick ones on the trail of a role you like.</p>'+
+    '<div class="jump" role="group" aria-label="Filter by level">'+chipBtn('lvl','all','Every level')+LEVELS.map(function(l){return chipBtn('lvl',l,sizeTag({lvl:l}));}).join('')+'</div>'+
+    '<div class="jump scrollrow" role="group" aria-label="Filter by department">'+chipBtn('g','all','Every department')+GROUPS.map(function(g){return chipBtn('g',g.k,'<i class="swatch"></i>'+esc(g.name),'g-'+g.k);}).join('')+'</div>'+
+    '<p class="muted" id="pcount" aria-live="polite" style="margin-top:16px"></p></header><div id="plist"></div></div>';
+  function draw(){
+    var total=0;
+    $('#plist').innerHTML=LEVELS.filter(function(l){return pf.lvl==='all'||pf.lvl===l;}).map(function(l){
+      var list=projs.filter(function(n){return n.lvl===l&&(pf.g==='all'||gOf(n).has(pf.g));}).sort(function(a,b){return a.name.localeCompare(b.name);});
+      total+=list.length;if(!list.length)return '';
+      return '<section class="lvsec" aria-labelledby="lv-'+l+'"><header><h2 id="lv-'+l+'">'+l+'</h2><p>'+LEVEL_HELP[l]+'</p></header><ul class="plate">'+list.map(function(n){
+        var rs=rolesUsing(n.id);
+        return '<li><a class="spec proj" href="#/skill/'+n.id+'"><h3>'+esc(n.name)+'</h3><p>'+esc(n.note)+'</p>'+
+          '<span class="proves"><em>Helps you become</em> '+rs.slice(0,3).map(function(x){return esc(x.name);}).join(', ')+(rs.length>3?' and '+(rs.length-3)+' more':'')+'</span>'+
+          '<span class="meta">'+sizeTag(n)+(done.has(n.id)?'<span class="prog">Built</span>':'')+'</span></a></li>';}).join('')+'</ul></section>';
+    }).join('')||'<div class="empty" style="margin-top:32px"><h3>No project matches both filters</h3><p>Try every level or every department.</p></div>';
+    $('#pcount').textContent=total+' of '+projs.length+' projects shown';
+    main.querySelectorAll('button[data-k]').forEach(function(b){b.setAttribute('aria-pressed',String(pf[b.dataset.k]===b.dataset.v));});
+  }
+  main.querySelector('.pagehead').addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(!b)return;pf[b.dataset.k]=b.dataset.v;save('tep-pf',pf);draw();});
+  draw();
+}
 function viewSkills(){
   main.innerHTML='<div class="wrap"><header class="pagehead"><h1 class="view-title" tabindex="-1">All '+skills.length+' skills, tools and projects</h1><p class="lede">The full index, A to Z. Each one explains itself in plain words and lists free places to learn it.</p>'+
     '<div class="legend">'+['s','t','p','f'].map(function(t){return '<span class="t-'+t+'">'+glyph(t,14)+'<b>'+TYPES[t]+'</b> '+TYPE_HELP[t].toLowerCase()+'</span>';}).join('')+'</div>'+
@@ -976,7 +1121,8 @@ function route(){
   var h=location.hash.replace(/^#\/?/,''),parts=h.split('#')[0].split('/'),anchor=h.split('#')[1];
   var v=parts[0]||'',nav='home';
   if(v==='role')viewRole(parts[1]);
-  else if(v==='skill'){viewSkill(parts[1]);nav='skills';}
+  else if(v==='skill'){viewSkill(parts[1]);nav=M[parts[1]]&&M[parts[1]].t==='p'?'projects':'skills';}
+  else if(v==='projects'){viewProjects();nav='projects';}
   else if(v==='roles'){viewRoles();nav='roles';}
   else if(v==='skills'){viewSkills();nav='skills';}
   else if(v==='')viewHome();
