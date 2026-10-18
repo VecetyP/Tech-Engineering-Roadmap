@@ -1,0 +1,1069 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tech Engineering Pathways</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout concept: left-to-right drafting-sheet graph, three root skills on the left, roles (filled dark cards) on the right, detail sheet docked beside it */
+:root{
+  --paper:#EDF0EF; --paper-2:#E4E9E8; --card:#FFFFFF; --ink:#14212A; --ink-2:#475862;
+  --line:#C5CED1; --grid:#D9E0E1; --edge:#8A9CA5; --focus:#0B63CE;
+  --job-bg:#14212A; --job-fg:#F2F5F4; --job-sub:#A9B8C0;
+  --c-s:#2F5FD0; --c-t:#7A4BC8; --c-p:#9A5F08; --c-f:#0E7A68;
+  --g-sw:#2450B8; --gb-sw:#E8EEFB; --gj-sw:#86A8FF; --g-cloud:#0B6D92; --gb-cloud:#E1F1F7; --gj-cloud:#5CC3E8; --g-ai:#6A3DB5; --gb-ai:#EEE8FA; --gj-ai:#B79BF2; --g-gd:#B02D68; --gb-gd:#FBE7F0; --gj-gd:#F08AB8; --g-biz:#8A5406; --gb-biz:#FAEED6; --gj-biz:#E2A64F; --g-med:#0B6A5A; --gb-med:#DAF1EA; --gj-med:#4FCDB4; --g-elec:#AD4A06; --gb-elec:#FAE8DA; --gj-elec:#F29A5A; --g-rob:#B02F2F; --gb-rob:#FAE3E3; --gj-rob:#F07B7B; --g-energy:#44690F; --gb-energy:#E8F1D6; --gj-energy:#A5CF5E; --g-res:#495E6D; --gb-res:#E6ECEF; --gj-res:#A3B5C2;
+  --font-display:'Bricolage Grotesque','IBM Plex Sans',system-ui,sans-serif;
+  --font-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F161B; --paper-2:#131C22; --card:#19242B; --ink:#E5ECEF; --ink-2:#9DADB6;
+    --line:#2D3B44; --grid:#1B262D; --edge:#5C707A; --focus:#6CA8FF;
+    --job-bg:#E5ECEF; --job-fg:#0F161B; --job-sub:#43545E;
+    --c-s:#86A8FF; --c-t:#B79BF2; --c-p:#E2A64F; --c-f:#4FCDB4;
+  --g-sw:#86A8FF; --gb-sw:#1B2744; --gj-sw:#2450B8; --g-cloud:#5CC3E8; --gb-cloud:#14303B; --gj-cloud:#0B6D92; --g-ai:#B79BF2; --gb-ai:#2A2142; --gj-ai:#6A3DB5; --g-gd:#F08AB8; --gb-gd:#3A1C2C; --gj-gd:#B02D68; --g-biz:#E2A64F; --gb-biz:#38290F; --gj-biz:#8A5406; --g-med:#4FCDB4; --gb-med:#12342E; --gj-med:#0B6A5A; --g-elec:#F29A5A; --gb-elec:#3B2314; --gj-elec:#AD4A06; --g-rob:#F07B7B; --gb-rob:#3B1919; --gj-rob:#B02F2F; --g-energy:#A5CF5E; --gb-energy:#263312; --gj-energy:#44690F; --g-res:#A3B5C2; --gb-res:#222D34; --gj-res:#495E6D;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F161B; --paper-2:#131C22; --card:#19242B; --ink:#E5ECEF; --ink-2:#9DADB6;
+  --line:#2D3B44; --grid:#1B262D; --edge:#5C707A; --focus:#6CA8FF;
+  --job-bg:#E5ECEF; --job-fg:#0F161B; --job-sub:#43545E;
+  --c-s:#86A8FF; --c-t:#B79BF2; --c-p:#E2A64F; --c-f:#4FCDB4;
+  --g-sw:#86A8FF; --gb-sw:#1B2744; --gj-sw:#2450B8; --g-cloud:#5CC3E8; --gb-cloud:#14303B; --gj-cloud:#0B6D92; --g-ai:#B79BF2; --gb-ai:#2A2142; --gj-ai:#6A3DB5; --g-gd:#F08AB8; --gb-gd:#3A1C2C; --gj-gd:#B02D68; --g-biz:#E2A64F; --gb-biz:#38290F; --gj-biz:#8A5406; --g-med:#4FCDB4; --gb-med:#12342E; --gj-med:#0B6A5A; --g-elec:#F29A5A; --gb-elec:#3B2314; --gj-elec:#AD4A06; --g-rob:#F07B7B; --gb-rob:#3B1919; --gj-rob:#B02F2F; --g-energy:#A5CF5E; --gb-energy:#263312; --gj-energy:#44690F; --g-res:#A3B5C2; --gb-res:#222D34; --gj-res:#495E6D;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--font-body); font-size:14px; line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:24px 32px;
+}
+.wrap{max-width:1560px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,4.4vw,48px);line-height:1.02;letter-spacing:-0.025em;margin:0 0 10px;text-wrap:balance}
+.lede{margin:0;max-width:66ch;color:var(--ink-2);font-size:15px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center}
+.search{position:relative;flex:1 1 220px;max-width:340px;min-width:0}
+.search input{
+  width:100%;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit;
+}
+.search input::placeholder{color:var(--ink-2)}
+.results{
+  position:absolute;z-index:30;left:0;right:0;top:42px;margin:0;padding:4px;list-style:none;background:var(--card);
+  border:1px solid var(--line);border-radius:8px;max-height:300px;overflow:auto;
+}
+.results button{display:flex;gap:8px;align-items:center;width:100%;text-align:left;padding:8px;border:0;background:transparent;color:var(--ink);font:inherit;border-radius:6px;cursor:pointer;min-height:36px}
+.results button:hover,.results button:focus-visible{background:var(--paper-2)}
+.results .none{padding:8px;color:var(--ink-2)}
+.btn,.filter{
+  height:38px;padding:0 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);
+  font:500 13px var(--font-body);cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+}
+.btn:hover,.filter:hover{border-color:var(--ink-2)}
+.filter[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filter .glyph,.results .glyph{color:var(--tc)}
+.filter[aria-pressed="true"] .glyph{color:var(--paper)}
+.filter .n{font-family:var(--font-mono);font-size:11px;opacity:.7}
+.sep{width:1px;height:22px;background:var(--line)}
+.count{margin-left:auto;font-family:var(--font-mono);font-size:12px;color:var(--ink-2)}
+button:focus-visible,input:focus-visible,.viewport:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+.viewport{
+  position:relative;height:min(78vh,780px);min-height:420px;overflow:auto;border:1px solid var(--line);border-radius:12px;
+  background-color:var(--paper-2);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;cursor:grab;overscroll-behavior:contain;
+}
+.viewport.panning{cursor:grabbing;user-select:none}
+.canvas{position:relative}
+svg.edges{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.edge{fill:none;stroke:var(--edge);stroke-width:1.4;opacity:.75}
+.edge.hl{stroke:var(--ink);stroke-width:2.2;opacity:1}
+.edge.dim{opacity:.1}
+.node{position:absolute;left:0;top:0;width:208px;height:52px}
+.node .body{
+  display:flex;align-items:center;gap:9px;width:100%;height:100%;padding:6px 44px 6px 10px;text-align:left;
+  background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;font:inherit;cursor:pointer;
+}
+.node.leaf .body{padding-right:10px}
+.node .body:hover{border-color:var(--ink-2)}
+.node.sel .body{outline:2px solid var(--focus);outline-offset:2px}
+.node.dim{opacity:.22}
+.node .glyph{flex:none;color:var(--tc)}
+.node .txt{display:flex;flex-direction:column;min-width:0;gap:1px}
+.node .kind{font:500 10px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.node .name{font-weight:500;font-size:13px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.node.t-j .body{background:var(--job-bg);color:var(--job-fg);border-color:var(--job-bg)}
+.node.t-j .kind{color:var(--job-sub)}
+.node.t-j .glyph{color:var(--gj,var(--job-sub))}
+.g-sw{--g:var(--g-sw);--gb:var(--gb-sw);--gj:var(--gj-sw)}
+.g-cloud{--g:var(--g-cloud);--gb:var(--gb-cloud);--gj:var(--gj-cloud)}
+.g-ai{--g:var(--g-ai);--gb:var(--gb-ai);--gj:var(--gj-ai)}
+.g-gd{--g:var(--g-gd);--gb:var(--gb-gd);--gj:var(--gj-gd)}
+.g-biz{--g:var(--g-biz);--gb:var(--gb-biz);--gj:var(--gj-biz)}
+.g-med{--g:var(--g-med);--gb:var(--gb-med);--gj:var(--gj-med)}
+.g-elec{--g:var(--g-elec);--gb:var(--gb-elec);--gj:var(--gj-elec)}
+.g-rob{--g:var(--g-rob);--gb:var(--gb-rob);--gj:var(--gj-rob)}
+.g-energy{--g:var(--g-energy);--gb:var(--gb-energy);--gj:var(--gj-energy)}
+.g-res{--g:var(--g-res);--gb:var(--gb-res);--gj:var(--gj-res)}
+.detail .kindrow.g-on{color:var(--g)}
+.tog{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);min-width:32px;height:32px;padding:0 6px;border:1px solid var(--line);
+  border-radius:8px;background:var(--paper-2);color:var(--ink);font:500 11px var(--font-mono);cursor:pointer;
+}
+.tog:hover{border-color:var(--ink-2)}
+.t-s{--tc:var(--c-s)} .t-t{--tc:var(--c-t)} .t-p{--tc:var(--c-p)} .t-f{--tc:var(--c-f)} .t-j{--tc:var(--ink)}
+@media (prefers-reduced-motion:no-preference){
+  .node.enter{animation:pop .22s ease-out}
+  @keyframes pop{from{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.94)}to{opacity:1;transform:translate(var(--tx),var(--ty)) scale(1)}}
+}
+.node{transform:translate(var(--tx),var(--ty))}
+
+.detail{
+  position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;padding:18px;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;min-width:0;
+}
+.detail .kindrow{display:flex;align-items:center;gap:8px;font:500 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.detail h2{font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1.1;letter-spacing:-0.015em;margin:8px 0 10px;text-wrap:balance}
+.detail p{margin:0 0 14px}
+.detail h3{font:500 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:16px 0 6px}
+.detail ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.detail a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--edge);text-underline-offset:3px;overflow-wrap:anywhere}
+.detail a:hover{text-decoration-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 10px 4px 8px;border:1px solid var(--line);border-radius:999px;background:var(--paper-2);
+  color:var(--ink);font:500 12px var(--font-body);cursor:pointer;text-align:left;
+}
+.chip:hover{border-color:var(--ink-2)}
+.chip .glyph{color:var(--tc);flex:none}
+.hint{color:var(--ink-2)}
+.legend{display:grid;grid-template-columns:auto 1fr;gap:8px 10px;margin:14px 0 0;align-items:start}
+.legend dt{display:flex;align-items:center;gap:6px;font:500 11px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--tc)}
+.legend dd{margin:0;color:var(--ink-2)}
+
+.modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:rgba(8,14,18,.55)}
+.modal[hidden]{display:none!important}
+.mdlg{position:relative;width:100%;max-width:520px;max-height:min(86vh,720px);overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:5px solid var(--g);border-radius:14px;padding:22px 22px 20px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.mdlg .mgrp{display:flex;gap:6px;align-items:center;font:500 11px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--g);padding-right:40px}
+.mdlg h2{margin:10px 0 12px;font:700 26px/1.15 var(--font-display);letter-spacing:-0.01em}
+.mdlg .mwhat{margin:0 0 16px;font-size:15.5px;line-height:1.6}
+.mdlg h3{margin:0 0 6px;font:500 11px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+.mdlg ul{margin:0 0 16px;padding-left:18px;font-size:14.5px;line-height:1.55}
+.mdlg .mfit{margin:0 0 18px;padding:10px 12px;background:var(--gb);border-radius:8px;font-size:14px;line-height:1.5}
+.mdlg .mfit b{color:var(--g)}
+.mdlg .mact{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mdlg .mgo{height:42px;padding:0 18px;border:0;border-radius:9px;background:var(--g);color:var(--card);font:600 15px var(--font-body,inherit);cursor:pointer}
+.mdlg .mgo:hover{filter:brightness(1.08)}
+.mdlg .mmeta{font:500 12px var(--font-mono);color:var(--ink-2)}
+.mdlg .mx{position:absolute;top:12px;right:12px;width:36px;height:36px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.mdlg button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.foot{color:var(--ink-2);font-size:12px;max-width:90ch}
+
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tab{padding:10px 16px;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;color:var(--ink-2);font:500 14px var(--font-body);cursor:pointer;display:inline-flex;gap:8px;align-items:center;min-height:42px}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tab .n{font:500 11px var(--font-mono);color:var(--ink-2)}
+.panel{display:flex;flex-direction:column;gap:16px}
+.pathbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.pathbar .ptext{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 320px}
+.pathbar .pname{font:600 17px var(--font-display);letter-spacing:-0.01em}
+.pathbar .psub{color:var(--ink-2)}
+.pathbar .pbtns{display:flex;gap:8px;flex-wrap:wrap}
+.canvas.pathmode .tog{display:none}
+.canvas.pathmode .node .body{padding-right:10px}
+.rtools{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center}
+.rtools input[type=search]{flex:1 1 220px;max-width:340px;min-width:0;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.rtools input::placeholder{color:var(--ink-2)}
+.rtools select{height:38px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.lbl{font:500 12px var(--font-mono);color:var(--ink-2);letter-spacing:.04em}
+.rrow{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.rrow .lbl{width:48px;flex:none}
+.gchips{display:flex;flex-wrap:wrap;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--g);flex:none}
+.filter.gchip[aria-pressed="true"]{background:var(--gb);color:var(--ink);border-color:var(--g);box-shadow:inset 0 0 0 1px var(--g)}
+#rbody{display:flex;flex-direction:column;gap:24px}
+.rgroup{border-top:2px solid var(--g);padding-top:4px;display:flex;flex-direction:column;gap:12px}
+.rgh{margin:0;font:inherit}
+.rghb{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;width:100%;text-align:left;background:none;border:0;padding:8px 0;font:inherit;color:var(--ink);cursor:pointer;min-height:44px}
+.rghb .dot{align-self:center}
+.rghb .gname{font:600 20px/1.1 var(--font-display);letter-spacing:-0.01em}
+.rghb .gn{font:500 12px var(--font-mono);color:var(--g)}
+.rghb .gblurb{flex:1 1 260px;color:var(--ink-2)}
+.rghb .chev{margin-left:auto;font:500 14px var(--font-mono);color:var(--ink-2);min-width:20px;text-align:right}
+.rolegrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.rolegrid li{min-width:0;display:flex}
+.rolecard{
+  display:flex;flex-direction:column;gap:8px;width:100%;padding:14px;text-align:left;background:var(--gb);color:var(--ink);
+  border:1px solid var(--line);border-radius:12px;font:inherit;cursor:pointer;min-height:148px;
+}
+.rolecard:hover{border-color:var(--g)}
+.rolecard .rgrp{display:flex;gap:6px;align-items:center;font:500 10.5px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--g)}
+.rolecard .glyph{color:var(--g);flex:none}
+.rolecard .rname{font:600 17px/1.2 var(--font-display);letter-spacing:-0.01em}
+.rolecard .rnote{color:var(--ink-2);font-size:13.5px;line-height:1.45;flex:1}
+.rolecard .rfoot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:500 11px var(--font-mono);color:var(--ink-2)}
+.rolecard .tag{padding:2px 7px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2)}
+.stages{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:10px}
+.stages li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start}
+.stages .stg{font:500 11px var(--font-mono);color:var(--paper);background:var(--ink);border-radius:999px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;margin-top:5px}
+@media (max-width:960px){
+  .stage{grid-template-columns:minmax(0,1fr)}
+  .detail{position:static;max-height:none}
+  .viewport{height:62vh}
+  .count{margin-left:0;width:100%}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Tech engineering pathways</h1>
+    <p class="lede">Three starting points, one connected map. Open a node to see what it leads to. A node with several arrows pointing into it draws on several of those skills. Filled dark cards are roles you can aim for.</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" role="tab" id="tab-map" aria-controls="mapView" aria-selected="true" type="button">Map</button>
+    <button class="tab" role="tab" id="tab-roles" aria-controls="rolesView" aria-selected="false" tabindex="-1" type="button">Roles <span class="n" id="roleCount"></span></button>
+  </div>
+
+  <div id="mapView" class="panel" role="tabpanel" aria-labelledby="tab-map">
+  <div class="pathbar" id="pathbar" hidden>
+    <div class="ptext"><span class="pname" id="pathName"></span><span class="psub" id="pathSub"></span></div>
+    <div class="pbtns"><button class="btn" id="backRoles" type="button">Back to roles</button><button class="btn" id="showFull" type="button">Show on full map</button></div>
+  </div>
+  <div class="toolbar" role="toolbar" aria-label="Map controls">
+    <div class="search">
+      <input id="q" type="search" placeholder="Find a skill, field or role" aria-label="Find a node" autocomplete="off">
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <button class="btn" id="reset" type="button">Reset view</button>
+    <button class="btn" id="expandAll" type="button">Expand all</button>
+    <button class="btn" id="collapseAll" type="button">Collapse all</button>
+    <span class="sep" aria-hidden="true"></span>
+    <span id="filters" style="display:contents"></span>
+    <span class="count" id="count" aria-live="polite"></span>
+  </div>
+
+  <div class="stage">
+    <div class="viewport" id="vp" tabindex="0" role="region" aria-label="Pathway graph. Scroll or drag to pan.">
+      <div class="canvas" id="canvas">
+        <svg class="edges" id="edges" aria-hidden="true">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1.5L8 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        </svg>
+      </div>
+    </div>
+    <aside class="detail" id="detail" aria-live="polite"></aside>
+  </div>
+  </div>
+
+  <div id="rolesView" class="panel" role="tabpanel" aria-labelledby="tab-roles" hidden>
+    <div class="rtools">
+      <input id="rq" type="search" placeholder="Filter roles" aria-label="Filter roles" autocomplete="off">
+      <label class="lbl" for="rsort">Order</label>
+      <select id="rsort"><option value="group">By group</option><option value="az">A to Z</option><option value="few">Fewest prerequisites</option><option value="many">Most prerequisites</option></select>
+      <button class="btn" id="rfold" type="button">Collapse groups</button>
+      <span class="count" id="rcount" aria-live="polite"></span>
+    </div>
+    <div class="rrow"><span class="lbl">Group</span><span class="gchips" id="groupFilters"></span></div>
+    <div class="rrow"><span class="lbl">Uses</span><span class="gchips" id="rootFilters"></span></div>
+    <div id="rbody"></div>
+  </div>
+
+  <div class="modal" id="modal" hidden><div class="mdlg" id="mdlg" role="dialog" aria-modal="true" aria-labelledby="mtitle" tabindex="-1"></div></div>
+
+  <p class="foot">Resources are free to use as of October 2026. Courses and pages move, so search the title if a link has gone. This is a general map, not an official curriculum for any one university.</p>
+</div>
+
+<script>
+const RAW = [
+["prog","s","Programming basics",[],"Logic, variables, loops, functions, and reading other people's code. Almost everything in software and AI starts here.","Solve 20 small puzzles on Exercism or Advent of Code.",["CS50x (Harvard, free)|https://cs50.harvard.edu/x/","Exercism|https://exercism.org/"]],
+["mp","s","Math and physics",[],"The shared language of engineering: change (calculus), structure (linear algebra), uncertainty (probability) and motion and energy (physics). Already her strong suit.","Pick one topic and explain it in a 5-minute video or one page of notes.",["Khan Academy math|https://www.khanacademy.org/math","MIT OpenCourseWare|https://ocw.mit.edu/"]],
+["elec","s","Electronics basics",[],"Voltage, current, resistors, how a circuit actually behaves. The doorway to hardware, robotics and chips.","Simulate an LED circuit first, then build it on a breadboard.",["Falstad circuit simulator|https://www.falstad.com/circuit/","All About Circuits textbook|https://www.allaboutcircuits.com/textbook/"]],
+
+["py","s","Python",["prog"],"The easiest first language, and the main one for data, AI and scripting.","Write a script that sorts and renames your own files.",["Automate the Boring Stuff|https://automatetheboringstuff.com/","Official Python tutorial|https://docs.python.org/3/tutorial/"]],
+["web","s","Web basics (HTML, CSS, JS)",["prog"],"Build pages anyone can open in a browser. The fastest route to something you can show people.","Publish a one-page personal site.",["The Odin Project|https://www.theodinproject.com/","MDN Learn|https://developer.mozilla.org/en-US/docs/Learn"]],
+["cs","s","How computers work",["prog"],"Binary, CPU, memory, how a program really runs. Makes every later topic less magical.","Build a tiny computer from logic gates in a simulator.",["Nand2Tetris|https://www.nand2tetris.org/","Teach Yourself Computer Science|https://teachyourselfcs.com/"]],
+["cli","t","Linux and the terminal",["prog"],"Moving around, running programs and automating work from the command line. Nearly every engineering job assumes it.","Do a week of daily file work only from the terminal.",["The Missing Semester (MIT)|https://missing.csail.mit.edu/"]],
+["git","t","Git and GitHub",["prog"],"Version control and collaboration. Your public GitHub doubles as your portfolio.","Put every project here and make one small open-source pull request.",["Pro Git book|https://git-scm.com/book/en/v2"]],
+
+["dsa","s","Data structures and algorithms",["py","discrete"],"Lists, trees, graphs, sorting, complexity. Tested in most software interviews and needed for fast code.","Implement a hash map and a graph search from scratch.",["Open Data Structures|https://opendatastructures.org/","NeetCode roadmap|https://neetcode.io/roadmap"]],
+["pydata","t","NumPy and pandas",["py"],"Load, clean and reshape tables of data. The daily tools of every data role.","Clean a public dataset and answer three questions about it.",["pandas getting started|https://pandas.pydata.org/docs/getting_started/index.html","Kaggle Learn|https://www.kaggle.com/learn"]],
+["db","s","Databases and SQL",["py"],"Store and query data reliably. SQL comes up in almost every tech interview.","Design a schema for a clinic booking system and write 10 queries.",["SQLBolt|https://sqlbolt.com/","PostgreSQL tutorial|https://www.postgresql.org/docs/current/tutorial.html"]],
+["pyauto","s","Scripting and automation",["py","cli"],"Small programs that save hours: files, APIs, web scraping, spreadsheets.","Automatically collect something you track by hand into a sheet.",["Automate the Boring Stuff|https://automatetheboringstuff.com/"]],
+
+["ts","s","TypeScript",["web"],"JavaScript with types. The default for serious web projects.","Convert one of your JavaScript projects to TypeScript.",["TypeScript handbook|https://www.typescriptlang.org/docs/handbook/intro.html"]],
+["frontend","t","React and frontend",["web","ts"],"Build interactive interfaces out of components.","A small app that fetches and filters live data.",["React docs|https://react.dev/learn"]],
+["backend","s","Backend and APIs",["py","web","db"],"The servers, logic and APIs behind apps. Python (FastAPI), Node or Go.","Build a small REST API with a database and login.",["FastAPI tutorial|https://fastapi.tiangolo.com/tutorial/","Node.js learn|https://nodejs.org/en/learn"]],
+["fullstack","s","Full-stack web (Next.js)",["frontend","backend"],"One codebase for pages and server. The quickest way to ship a complete product alone.","Ship a real app with login to a public URL.",["Next.js Learn|https://nextjs.org/learn"]],
+["mobile","s","Mobile apps",["web","dsa"],"iOS and Android apps with Flutter, Kotlin or Swift.","A habit-tracker app running on your own phone.",["Flutter docs|https://docs.flutter.dev/get-started/learn-flutter","Android basics|https://developer.android.com/courses"]],
+["uxui","s","UI and UX design",["web"],"Designing how a product looks, feels and works, with user research and Figma.","Redesign a clunky app you use and test it with five people.",["Laws of UX|https://lawsofux.com/","Nielsen Norman Group articles|https://www.nngroup.com/articles/"]],
+
+["net","s","Computer networks",["cs"],"How data crosses the internet: IP, TCP, HTTP, DNS, wifi. Core to cloud, security, IoT and telecom.","Capture and read your own traffic with Wireshark.",["Cloudflare Learning Center|https://www.cloudflare.com/learning/"]],
+["docker","t","Docker and containers",["cli","backend"],"Package an app so it runs the same everywhere.","Containerize your API project.",["Docker get started|https://docs.docker.com/get-started/"]],
+["cloud","s","Cloud (AWS, GCP, Azure)",["docker","net"],"Rent servers, storage and AI services on demand.","Deploy your container to a free-tier cloud service.",["AWS training|https://aws.amazon.com/training/","Google Cloud Skills Boost|https://www.cloudskillsboost.google/"]],
+["k8s","t","Kubernetes and infrastructure as code",["cloud"],"Run many containers reliably and describe infrastructure in code (Terraform).","Run a two-service app on a local Kubernetes cluster.",["Kubernetes basics|https://kubernetes.io/docs/tutorials/kubernetes-basics/"]],
+["distsys","s","Distributed systems",["backend","net"],"How services stay correct and fast across many machines. A senior-level topic.","Build a small replicated key-value store.",["MIT distributed systems course|https://pdos.csail.mit.edu/6.824/"]],
+["sec","s","Cybersecurity basics",["cli","net"],"How systems get attacked and defended: web flaws, passwords, malware, networks.","Solve beginner capture-the-flag challenges.",["OWASP Top Ten|https://owasp.org/www-project-top-ten/","PicoCTF|https://picoctf.org/","OverTheWire|https://overthewire.org/wargames/"]],
+["crypto","s","Cryptography",["discrete","sec"],"The math behind encryption, signatures and blockchains.","Implement RSA with small numbers, then break it.",["Crypto 101 (free book)|https://www.crypto101.io/"]],
+
+["cfam","s","C and C++",["cs"],"Languages close to the hardware. Needed for embedded, games, operating systems and speed.","Write a tiny shell or a text game in C.",["Beej's Guide to C|https://beej.us/guide/bgc/","learncpp.com|https://www.learncpp.com/"]],
+["os","s","Operating systems",["cfam"],"Processes, memory, file systems, scheduling.","Work through the OSTEP projects.",["OSTEP (free book)|https://pages.cs.wisc.edu/~remzi/OSTEP/"]],
+["comp","s","Compilers and languages",["dsa","cfam"],"How code becomes a running program: parsing, optimization.","Write an interpreter for a toy language.",["Crafting Interpreters (free)|https://craftinginterpreters.com/"]],
+["game","f","Game development",["py","linalg"],"Engines, gameplay, physics and art tooling.","Finish a one-week game jam entry.",["Godot docs|https://docs.godotengine.org/","Unity Learn|https://learn.unity.com/"]],
+["gfx","s","Graphics programming",["cfam","linalg"],"Shaders, rendering, 3D math. Also powers simulation and AR/VR.","Render a spinning textured cube.",["Learn OpenGL|https://learnopengl.com/"]],
+
+["viz","s","Data visualization",["pydata"],"Turning numbers into charts people understand at a glance.","Build a chart story from a dataset you care about.",["Kaggle data visualization|https://www.kaggle.com/learn/data-visualization"]],
+["dashtools","t","Dashboards (Streamlit, Power BI)",["viz"],"Tools for publishing interactive reports.","Publish a live dashboard others can open.",["Streamlit docs|https://docs.streamlit.io/"]],
+["exper","s","Experiment design and A/B testing",["stats"],"Telling real effects from noise. Central to product, research and clinical work.","Design a test for a question in your own life and analyze it.",["Seeing Theory (Brown)|https://seeing-theory.brown.edu/"]],
+["ml","s","Machine learning",["pydata","stats","linalg"],"Models that learn from data: regression, trees, clustering, evaluation.","Predict something from a Kaggle dataset and explain why the model works.",["ML Specialization (Andrew Ng, free to audit)|https://www.deeplearning.ai/courses/machine-learning-specialization/","scikit-learn tutorials|https://scikit-learn.org/stable/tutorial/index.html","StatQuest|https://www.youtube.com/@statquest"]],
+["kaggle","p","Kaggle competitions",["ml"],"Practice on real problems with public leaderboards and shared notebooks.","Enter one beginner competition and write up your approach.",["Kaggle competitions|https://www.kaggle.com/competitions"]],
+["dl","s","Deep learning",["ml","calc"],"Neural networks, backpropagation, training at scale.","Train a small network from scratch to classify images.",["Neural Networks: Zero to Hero (Karpathy)|https://karpathy.ai/zero-to-hero.html","Dive into Deep Learning|https://d2l.ai/","fast.ai|https://course.fast.ai/"]],
+["cv","s","Computer vision",["dl"],"Machines that see: detection, segmentation, tracking.","Detect and count objects in a webcam feed.",["Stanford CS231n|https://cs231n.stanford.edu/","OpenCV docs|https://docs.opencv.org/"]],
+["nlp","s","NLP and large language models",["dl"],"Text, speech and LLMs.","Fine-tune a small model on a Thai-language task.",["Hugging Face course|https://huggingface.co/learn"]],
+["llmapps","p","Build an LLM-powered app",["nlp","backend"],"Combine a model API with your own data to make a useful tool. The quickest way to show AI skills.","A study or search assistant over a set of documents you own.",["Anthropic docs|https://docs.claude.com/"]],
+["rl","s","Reinforcement learning",["dl","stats"],"Agents that learn by trial and error. Key to game AI and robot learning.","Train an agent on a Gymnasium environment.",["Sutton and Barto (free book)|http://incompleteideas.net/book/the-book-2nd.html","OpenAI Spinning Up|https://spinningup.openai.com/"]],
+["mlops","s","MLOps and deployment",["ml","docker"],"Shipping, monitoring and retraining models in production.","Serve a model behind an API and log its predictions.",["Made With ML|https://madewithml.com/"]],
+
+["calc","s","Calculus",["mp"],"Rates of change and accumulation. Underneath physics, ML, control and signals.","Fit a curve to data by hand, then check with code.",["MIT 18.01|https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/","3Blue1Brown: Essence of Calculus|https://www.3blue1brown.com/topics/calculus"]],
+["linalg","s","Linear algebra",["mp"],"Vectors and matrices. Used in ML, graphics, robotics and signals.","Rotate and project 3D points with matrices in NumPy.",["3Blue1Brown: Essence of Linear Algebra|https://www.3blue1brown.com/topics/linear-algebra","MIT 18.06|https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/"]],
+["stats","s","Probability and statistics",["mp"],"Reasoning under uncertainty. Foundation of data science, ML and clinical research.","Simulate coin flips and dice to check a probability result.",["Harvard Stat 110|https://projects.iq.harvard.edu/stat110","StatQuest|https://www.youtube.com/@statquest"]],
+["mech","s","Classical mechanics",["mp"],"Forces, motion, energy. The basis of mechanical and robotic systems.","Simulate a falling object with air resistance.",["MIT 8.01|https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/","OpenStax University Physics|https://openstax.org/details/books/university-physics-volume-1"]],
+["em","s","Electricity and magnetism",["mp"],"Fields, waves and induction. The physics behind circuits, motors and radio.","",["OpenStax University Physics Vol. 2|https://openstax.org/details/books/university-physics-volume-2"]],
+["discrete","s","Discrete math and logic",["mp"],"Sets, proofs, graphs, counting. The theory under algorithms and chips.","",["Discrete Mathematics: An Open Introduction|https://discrete.openmathbooks.org/"]],
+["diffeq","s","Differential equations",["calc"],"Equations describing change over time: circuits, vibration, heat, populations.","Model a spring and damper in Python.",["MIT 18.03|https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/"]],
+["thermo","s","Thermodynamics and heat transfer",["mech","calc"],"Energy, heat and efficiency. Key for engines, batteries and power plants.","Model how fast a cup of tea cools.",["MIT OpenCourseWare|https://ocw.mit.edu/"]],
+["optics","s","Optics and photonics",["em"],"Light as a wave: lenses, lasers, fibre, sensors.","",["OpenStax University Physics Vol. 3|https://openstax.org/details/books/university-physics-volume-3"]],
+["quantum","s","Quantum mechanics basics",["linalg","em"],"States, measurement, superposition. Needed for semiconductors and quantum computing.","",["IBM Quantum Learning|https://learning.quantum.ibm.com/"]],
+["materials","s","Materials science",["mech"],"How metals, polymers, ceramics and tissue-like materials behave and fail.","",["Engineering LibreTexts|https://eng.libretexts.org/"]],
+["optim","s","Optimization",["calc","linalg"],"Finding the best solution under constraints. The engine of ML, control and logistics.","Solve a scheduling problem with a linear programming library.",["Convex Optimization (Boyd, free)|https://web.stanford.edu/~boyd/cvxbook/"]],
+["numer","s","Numerical methods and simulation",["calc","linalg","py"],"Solving equations on a computer. The basis of engineering simulation.","Simulate a pendulum or heat flow in Python.",["Scientific Python Lectures|https://scipy-lectures.org/"]],
+["signals","s","Signals and systems",["calc","diffeq","linalg"],"Fourier transform, filters, sampling. Behind audio, radio, imaging and control.","Remove noise from a recorded audio clip with a filter.",["MIT 6.003|https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/"]],
+["control","s","Control theory",["diffeq","signals"],"Making a system follow a target: feedback, PID, stability. Drives robots, drones, cars and power systems.","Tune a PID loop on a simulated motor.",["Control Systems Lectures (Brian Douglas)|https://www.youtube.com/@BrianBDouglas"]],
+
+["circuits","s","Circuit analysis",["elec"],"Ohm's and Kirchhoff's laws; analyze circuits of resistors, capacitors and inductors.","Predict a circuit's voltages, then measure them.",["Falstad circuit simulator|https://www.falstad.com/circuit/"]],
+["digital","s","Digital logic",["elec"],"Gates, flip-flops, state machines. How decisions become hardware.","Build a counter or traffic-light controller in a simulator.",["HDLBits|https://hdlbits.01xz.net/wiki/Main_Page"]],
+["analog","s","Analog electronics",["circuits"],"Diodes, transistors, op-amps, filters. Where real-world signals live.","Build an audio amplifier on a breadboard.",["All About Circuits: Semiconductors|https://www.allaboutcircuits.com/textbook/semiconductors/"]],
+["mcu","t","Microcontrollers (Arduino, ESP32)",["circuits","digital"],"Tiny programmable computers that read sensors and drive motors.","Build a temperature logger that posts to a web page.",["Arduino docs|https://docs.arduino.cc/","Wokwi simulator|https://wokwi.com/"]],
+["sensors","s","Sensors and actuators",["mcu"],"Measuring the world and moving things: IMUs, cameras, motors, servos.","Build a line-following or self-balancing robot.",[]],
+["embc","s","Embedded C and firmware",["mcu","cfam"],"Reliable low-level code for hardware with tight memory and timing.","Write a sensor driver without any library.",["Interrupt blog (Memfault)|https://interrupt.memfault.com/blog/"]],
+["rtos","s","RTOS and real-time systems",["embc"],"Running many tasks on a chip with hard timing guarantees.","Run three tasks with different priorities on an ESP32.",["FreeRTOS docs|https://www.freertos.org/Documentation/00-Overview"]],
+["iot","f","IoT systems",["mcu","net"],"Connected sensors and devices streaming data to the cloud.","A plant monitor that reports to a dashboard.",[]],
+["pcb","t","PCB design (KiCad)",["circuits","analog"],"Turning a circuit into a manufacturable board.","Design and order a small board.",["KiCad docs|https://docs.kicad.org/"]],
+["hdl","s","HDL and FPGAs",["digital"],"Describe hardware in Verilog or VHDL and run it on programmable chips.","Implement a small CPU or a VGA signal on an FPGA board.",["HDLBits|https://hdlbits.01xz.net/wiki/Main_Page","Nandland|https://nandland.com/"]],
+["comparch","s","Computer architecture",["digital","cs"],"How CPUs and GPUs are built, and why code runs fast or slow.","Build a simple pipelined CPU in a simulator.",["Nand2Tetris|https://www.nand2tetris.org/"]],
+["gpuprog","s","GPU programming (CUDA)",["comparch","linalg"],"Running thousands of threads in parallel. How AI models and simulations run fast.","Speed up a matrix multiply on a GPU.",[]],
+["vlsi","f","Chip design (RTL to silicon)",["hdl","comparch"],"Designing processors and accelerators: RTL, verification, physical design.","Submit a small design to Tiny Tapeout.",["Tiny Tapeout|https://tinytapeout.com/","OpenROAD docs|https://openroad.readthedocs.io/"]],
+["semidev","s","Semiconductor devices",["circuits","quantum"],"How transistors work and how they are manufactured.","",["nanoHUB|https://nanohub.org/"]],
+["rf","s","RF and wireless",["em","signals","analog"],"Antennas, radio, the physical layer of 5G and wifi.","Receive FM radio with a cheap software-defined radio.",["PySDR (free book)|https://pysdr.org/"]],
+["powerel","s","Power electronics",["analog","em"],"Converters, motor drives, chargers: shaping power efficiently.","Build a buck converter and measure its efficiency.",[]],
+["battery","f","Batteries and EV systems",["powerel","thermo"],"Cells, battery management, motors, charging.","Log the discharge curve of a small battery pack.",["Battery University|https://batteryuniversity.com/"]],
+["grid","f","Renewable energy and smart grid",["powerel","thermo"],"Solar, wind, storage and the electricity network.","",[]],
+["qcomp","f","Quantum computing",["quantum","linalg"],"Algorithms and hardware that use quantum states.","Run a small circuit on a free cloud quantum simulator.",["IBM Quantum Learning|https://learning.quantum.ibm.com/"]],
+
+["kin","s","Robot kinematics and dynamics",["linalg","mech"],"Describing and computing how arms and vehicles move.","Compute joint angles for a 2-link arm in Python.",["Modern Robotics (free)|http://modernrobotics.northwestern.edu/"]],
+["ros","t","ROS 2 and robot software",["cli","py"],"The standard framework for connecting robot sensors, planners and motors.","Drive a simulated robot to goals in Gazebo.",["ROS 2 tutorials|https://docs.ros.org/en/rolling/Tutorials.html"]],
+["sim","t","Robot simulation (Gazebo, MuJoCo)",["ros"],"Test robots safely in software before touching hardware.","Simulate a manipulator picking up a block.",["Gazebo|https://gazebosim.org/","MuJoCo|https://mujoco.org/"]],
+["percep","s","Perception and SLAM",["cv","kin"],"Mapping and localizing a robot from cameras and lidar.","Run a visual SLAM demo on a public dataset.",[]],
+["plan","s","Motion planning and navigation",["kin","dsa"],"Finding safe paths for arms, cars and drones.","Implement RRT in a 2D maze.",["Planning Algorithms (LaValle, free)|https://lavalle.pl/planning/"]],
+["roblearn","s","Robot learning",["rl","kin"],"Training robots with reinforcement and imitation learning.","Train a simulated arm to reach a target.",[]],
+["cad","t","CAD and 3D modeling",["mech"],"Designing physical parts on screen: FreeCAD, Fusion, Blender.","Model and print a phone stand.",["FreeCAD|https://www.freecad.org/","Blender manual|https://docs.blender.org/manual/en/latest/"]],
+["print3d","t","3D printing and fabrication",["cad"],"Turning models into parts: FDM, resin, CNC.","Print a working hinge.",[]],
+["mechatronics","f","Mechatronics",["sensors","control","cad"],"Mechanics, electronics and software combined into one machine.","Build a small robot arm with feedback control.",[]],
+["drone","f","Drones and flight systems",["control","sensors"],"Flight control, state estimation, autonomy.","Fly a simulated drone with PX4.",["PX4 docs|https://docs.px4.io/","ArduPilot|https://ardupilot.org/"]],
+["auto","f","Autonomous vehicles",["percep","plan","control"],"Perception, planning and control for self-driving cars and delivery robots.","",[]],
+
+["medinstr","s","Medical instrumentation",["analog","sensors"],"ECG amplifiers, pulse oximeters, infusion pumps: sensing the body safely.","Build a heart-rate monitor with a pulse sensor.",[]],
+["biosig","s","Biosignal processing",["signals","medinstr"],"Cleaning and interpreting ECG, EEG and EMG.","Detect heartbeats in an open ECG recording.",["PhysioNet|https://physionet.org/"]],
+["medimg","s","Medical imaging",["signals","linalg"],"X-ray, CT, MRI, ultrasound and how images are reconstructed and analyzed.","Segment a jaw or tooth in an open CT scan with 3D Slicer.",["3D Slicer|https://www.slicer.org/"]],
+["biomat","s","Biomaterials",["materials"],"Implants, dental materials, scaffolds: what the body accepts. A direct link to her dentistry background.","",[]],
+["medreg","s","Medical device regulation and quality",["medinstr"],"Risk management, clinical evaluation, approvals such as ISO 13485 and FDA or Thai FDA pathways.","",["FDA medical devices overview|https://www.fda.gov/medical-devices"]],
+["healthinfo","f","Health informatics",["db","py"],"Electronic records, data standards (HL7 FHIR), clinical data systems.","Parse a synthetic FHIR dataset and chart patient flow.",["HL7 FHIR overview|https://www.hl7.org/fhir/overview.html"]],
+["bioinfo","f","Bioinformatics",["py","stats"],"Computing on DNA, proteins and clinical data.","Solve ten Rosalind problems.",["Rosalind|https://rosalind.info/problems/locations/","Biopython tutorial|https://biopython.org/DIST/docs/tutorial/Tutorial.html"]],
+["dental","f","Digital dentistry technology",["cad","medimg","print3d"],"CAD/CAM crowns, aligners, surgical guides, intraoral scanning. Where dentistry and engineering meet.","Design a simple crown or surgical guide from an open scan and print it.",[]],
+["implants","f","Prosthetics and implants",["biomat","print3d","medimg"],"Custom implants, prosthetic limbs, orthotics.","",[]],
+["rehab","f","Rehabilitation and assistive tech",["biosig","control","sensors"],"Exoskeletons, bionic hands, brain-computer interfaces.","",[]],
+["wearable","p","Wearable health prototype",["mcu","medinstr"],"A small device that measures something about the body and shows it on a phone.","Build a posture or heart-rate tracker.",[]],
+["gradschool","f","Research and grad school",["ml","control","medimg","materials","qcomp"],"A master's or PhD to go deeper into one field. Often funded; common in AI, devices and chips.","Join a lab as an undergraduate and help on one paper.",["arXiv|https://arxiv.org/","Semantic Scholar|https://www.semanticscholar.org/"]],
+["hack","p","Hackathons and open source",["git"],"Fast team builds and real contributions. Easiest way to get noticed before graduating.","Join one hackathon this year.",[]],
+
+["j_swe","j","Software engineer",["dsa","backend","frontend","hack"],"Builds and maintains products. The broadest entry point; every industry hires. Internships are the usual way in.","",[]],
+["j_fe","j","Frontend engineer",["frontend","uxui"],"Builds the interfaces people use in browsers and apps.","",[]],
+["j_be","j","Backend engineer",["backend","db"],"Builds the servers, databases and APIs behind products.","",[]],
+["j_fs","j","Full-stack engineer",["fullstack"],"Works on both the interface and the server. Common in startups and small teams.","",[]],
+["j_mob","j","Mobile developer",["mobile"],"Builds iOS and Android apps, from consumer products to hospital tools.","",[]],
+["j_devops","j","DevOps / platform engineer",["k8s","cloud"],"Builds the pipelines and infrastructure other engineers deploy on.","",[]],
+["j_sre","j","Site reliability engineer",["distsys","k8s"],"Keeps large systems fast and available.","",[]],
+["j_cloud","j","Cloud solutions architect",["cloud","net"],"Designs cloud systems for companies.","",[]],
+["j_sec","j","Security engineer",["sec","cloud"],"Defends systems and finds weaknesses before attackers do.","",[]],
+["j_pen","j","Penetration tester",["sec"],"Paid to break into systems with permission, to show where they are weak before attackers do.","",[]],
+["j_secres","j","Security / cryptography researcher",["crypto","sec"],"Studies new attacks and designs new protections.","",[]],
+["j_sys","j","Systems programmer",["os","cfam"],"Writes operating systems, drivers, databases and runtimes.","",[]],
+["j_comp","j","Compiler engineer",["comp"],"Builds the tools that turn code into fast programs.","",[]],
+["j_game","j","Game developer",["game","cfam"],"Builds gameplay, tools and engines.","",[]],
+["j_gfx","j","Graphics engineer",["gfx","game"],"Builds rendering, shaders and visual effects pipelines.","",[]],
+["j_ux","j","UX / product designer",["uxui"],"Designs how products work, based on research with users.","",[]],
+["j_pm","j","Product manager",["uxui","viz","backend"],"Decides what to build and why. Technical background helps a lot.","",[]],
+["j_analyst","j","Data analyst",["dashtools","db"],"Turns company data into answers and dashboards.","",[]],
+["j_ds","j","Data scientist",["ml","exper","kaggle"],"Builds models and experiments to guide decisions.","",[]],
+["j_de","j","Data engineer",["db","cloud","pydata","pyauto"],"Builds the pipelines that move and clean data at scale.","",[]],
+["j_mle","j","ML engineer",["mlops","ml"],"Puts models into production and keeps them working.","",[]],
+["j_airs","j","AI research scientist",["dl","rl","optim"],"Invents new methods. Usually needs a master's or PhD.","",[]],
+["j_cve","j","Computer vision engineer",["cv"],"Builds systems that understand images and video.","",[]],
+["j_llm","j","LLM / AI application engineer",["llmapps"],"Builds products powered by language models.","",[]],
+["j_gpu","j","GPU / HPC engineer",["gpuprog"],"Makes AI and scientific code run fast on parallel hardware.","",[]],
+["j_aiinfra","j","AI infrastructure engineer",["gpuprog","mlops"],"Builds the systems that train and serve large models.","",[]],
+["j_quant","j","Quantitative analyst",["exper","optim"],"Builds mathematical models for finance and trading.","",[]],
+["j_or","j","Operations research analyst",["optim"],"Optimizes logistics, scheduling and supply chains.","",[]],
+["j_biostat","j","Biostatistician",["exper","bioinfo"],"Designs and analyzes clinical studies.","",[]],
+["j_bioinf","j","Bioinformatics scientist",["bioinfo","ml"],"Analyzes genomic and biological data.","",[]],
+["j_hi","j","Health informatics engineer",["healthinfo"],"Builds hospital data systems and clinical software.","",[]],
+["j_medai","j","Medical AI engineer",["medimg","dl"],"Builds models that read scans and signals.","",[]],
+["j_imgsw","j","Medical imaging software engineer",["medimg","gfx"],"Builds viewers and processing tools for scanners and clinics.","",[]],
+["j_meddev","j","Medical device engineer",["medinstr","medreg","embc","wearable"],"Designs and tests devices such as monitors, pumps and implants.","",[]],
+["j_reg","j","Regulatory and quality engineer",["medreg"],"Gets medical products approved and keeps them compliant.","",[]],
+["j_bme","j","Clinical biomedical engineer",["medinstr","biosig"],"Manages and evaluates equipment inside hospitals.","",[]],
+["j_neuro","j","Neurotech / BCI engineer",["rehab","ml"],"Builds brain-computer interfaces and neural devices.","",[]],
+["j_dentaleng","j","Dental technology engineer",["dental"],"Designs scanners, CAD software and devices for dentistry.","",[]],
+["j_dentalai","j","Dental imaging AI scientist",["dental","dl"],"Builds models that read dental X-rays and 3D scans.","",[]],
+["j_prost","j","Prosthetics / implant engineer",["implants"],"Designs custom implants and prosthetic devices.","",[]],
+["j_emb","j","Embedded / firmware engineer",["rtos","embc"],"Writes the software inside devices, from earbuds to cars.","",[]],
+["j_iot","j","IoT engineer",["iot","cloud"],"Builds connected devices and the cloud behind them.","",[]],
+["j_hw","j","Hardware engineer",["pcb","sensors"],"Designs circuits and boards for products, from sensors to consumer devices.","",[]],
+["j_fpga","j","FPGA engineer",["hdl"],"Builds custom hardware logic that runs faster than software, used in finance, telecom and imaging.","",[]],
+["j_asic","j","ASIC / VLSI design engineer",["vlsi"],"Designs processors and accelerators at the circuit level. Usually needs a master's degree or strong chip-design projects.","",[]],
+["j_verif","j","Design verification engineer",["vlsi"],"Proves chips work before they are made. Large share of chip jobs.","",[]],
+["j_semi","j","Semiconductor process engineer",["semidev"],"Runs and improves the fab steps that make chips.","",[]],
+["j_rf","j","RF / telecom engineer",["rf","net"],"Designs radio and network systems.","",[]],
+["j_dsp","j","DSP / audio engineer",["signals","embc"],"Processes sound, radio and sensor signals in real time.","",[]],
+["j_robsw","j","Robotics software engineer",["ros","percep","plan","roblearn"],"Builds the software that lets robots sense and act.","",[]],
+["j_robctl","j","Robotics controls engineer",["control","kin"],"Designs the feedback that makes robots move precisely.","",[]],
+["j_mecha","j","Mechatronics engineer",["mechatronics"],"Designs machines that combine mechanics, electronics and code.","",[]],
+["j_auto","j","Industrial automation engineer",["control","sensors"],"Automates factories with PLCs, sensors and robots.","",[]],
+["j_drone","j","Drone / UAV engineer",["drone"],"Designs and programs unmanned aircraft.","",[]],
+["j_av","j","Autonomous vehicle engineer",["auto"],"Works on self-driving and delivery vehicles.","",[]],
+["j_sim","j","Simulation engineer",["numer","sim"],"Builds simulations of physical systems for design and testing.","",[]],
+["j_power","j","Power electronics engineer",["powerel"],"Designs chargers, inverters and motor drives.","",[]],
+["j_bat","j","Battery / EV engineer",["battery"],"Works on cells, packs and charging for electric vehicles.","",[]],
+["j_grid","j","Power systems engineer",["grid"],"Plans and runs grids with renewable energy.","",[]],
+["j_qe","j","Quantum engineer / researcher",["qcomp"],"Builds quantum software or hardware. Mostly via grad school.","",[]],
+["j_photo","j","Photonics / optical engineer",["optics","sensors"],"Designs lasers, cameras, lidar and fibre systems.","",[]],
+["j_mat","j","Materials engineer",["materials"],"Chooses and develops materials for products.","",[]],
+["j_sales","j","Solutions / sales engineer",["backend","cloud"],"Explains and fits technical products to customer needs.","",[]],
+["j_consult","j","Technical consultant",["pydata","cloud"],"Solves technology problems for many different clients.","",[]],
+["j_dev","j","Developer advocate / technical creator",["git","frontend"],"Explains tech through docs, talks and videos.","",[]],
+["j_founder","j","Startup founder",["fullstack","exper"],"Builds a company around a product you ship yourself.","",[]],
+["j_prof","j","University researcher / lecturer",["gradschool"],"Research and teaching in a university.","",[]],
+["j_rnd","j","Industry R&D scientist",["gradschool","semidev"],"Research roles inside companies and labs.","",[]]
+];
+
+const INFO = {
+j_swe:{w:"A software engineer writes the programs behind the apps and websites you use every day. Think of it as giving a computer very precise instructions, then testing and improving them until they work well for real people.",d:["Write and review code with a small team","Find and fix bugs in existing features","Talk with designers and managers about what to build next"],f:"You enjoy solving puzzles step by step and seeing something you built actually work."},
+j_fe:{w:"Frontend engineers build the part of a website or app you can see and touch: buttons, menus, pages and animations. Their job is to make it look right and feel smooth on every screen.",d:["Turn a designer's mockup into a working page","Make sure it works on phones and different browsers","Connect the screen to data coming from the server"],f:"You care about how things look and feel, and like quick, visible results."},
+j_be:{w:"Backend engineers build the hidden side of an app: the servers and databases that store your account, process your order and send the right data back. If the frontend is a restaurant's dining room, the backend is the kitchen.",d:["Design databases and write the code that uses them","Build APIs that apps and websites talk to","Keep things fast and secure as more people use them"],f:"You like logic, organizing information, and making things reliable behind the scenes."},
+j_fs:{w:"A full-stack engineer works on both the visible screens and the hidden servers, so one person can build a whole product. It is especially common at small companies and startups.",d:["Build a feature from the screen all the way to the database","Put the app online so people can use it","Wear many hats as the team's needs change"],f:"You like seeing the whole picture and don't want to be locked into one narrow area."},
+j_mob:{w:"Mobile developers make apps for phones and tablets, such as banking, delivery or health apps. They design for small touch screens, patchy internet and battery limits.",d:["Build screens and features for iPhone or Android","Test on real devices","Publish updates to the app stores"],f:"You love your phone's apps and want to make something people carry in their pocket."},
+j_sys:{w:"Systems programmers write the deep software that other software runs on: operating systems, databases, drivers and language runtimes. The work is close to the machine, so speed and correctness matter a lot.",d:["Write low-level code in languages like C, C++ or Rust","Track down tricky performance or memory problems","Read a lot of existing code and documentation"],f:"You are curious about how computers really work and enjoy hard, detailed problems."},
+j_comp:{w:"Compiler engineers build the tools that translate human-written code into instructions a chip can run, and make that code fast. A compiler is like a translator who also edits for speed.",d:["Improve how code is optimized for different chips","Add support for new language features","Debug unusual crashes in generated code"],f:"You like languages, logic and theory, and don't mind a steep learning curve."},
+
+j_devops:{w:"DevOps and platform engineers build the tools and pipelines that let other engineers release software safely and quickly. They are the road crew that keeps new code flowing to users.",d:["Automate testing and releasing","Manage servers and cloud services with code","Fix things when a release goes wrong"],f:"You like automating boring work and making life easier for other engineers."},
+j_sre:{w:"Site reliability engineers keep large online services running: fast, available and quick to recover when something breaks. They treat reliability as an engineering problem, with measurements and automation.",d:["Watch dashboards and respond to incidents","Write tools so the same problem doesn't happen twice","Plan for traffic spikes and failures"],f:"You stay calm under pressure and like understanding how big systems fail."},
+j_cloud:{w:"Cloud solutions architects design how a company's systems run on services like AWS, Google Cloud or Azure. They choose the pieces, balance cost against speed and safety, and explain the plan to others.",d:["Draw up system designs for projects","Compare services and estimate costs","Guide teams while they build"],f:"You like big-picture design and explaining technical choices to non-experts."},
+j_sec:{w:"Security engineers protect systems from attackers. They look for weak spots, add defenses and respond when something suspicious happens.",d:["Review code and systems for weaknesses","Set up monitoring and alerts","Investigate and respond to attacks"],f:"You like thinking like an attacker and don't mind detective work."},
+j_pen:{w:"Penetration testers are hired to break into a company's systems, with permission, to show where they are weak before real criminals find out. It is like paying a locksmith to test your doors.",d:["Probe websites and networks for flaws","Write up what they found and how to fix it","Practice on challenge sites and competitions"],f:"You love puzzles and breaking things to understand them, and you follow clear ethics."},
+j_secres:{w:"Security and cryptography researchers study new ways systems can be attacked and invent stronger protections, like better encryption. Much of the work is mathematical and is published as papers.",d:["Analyze protocols and software for flaws","Prove a method is secure, or show that it isn't","Publish findings and share tools"],f:"You like deep math, logic puzzles and long-term curiosity."},
+
+j_analyst:{w:"Data analysts turn a company's numbers into answers, such as which product sells best or why customers leave. They clean data, make charts and explain what the numbers mean in plain language.",d:["Pull data with SQL and spreadsheets","Build charts and dashboards","Present findings to managers"],f:"You like patterns, telling stories with numbers, and helping people decide."},
+j_ds:{w:"Data scientists use statistics and machine learning to predict and explain things, for example which customers might leave or how a treatment performs. They combine coding, math and business sense.",d:["Explore messy datasets","Build and test prediction models","Explain results and their limits"],f:"You enjoy math, experimenting, and asking why something is happening."},
+j_de:{w:"Data engineers build the pipes that move data from many places into one tidy place, so analysts and AI teams can use it. If data scientists are chefs, data engineers run the supply chain.",d:["Build automated data pipelines","Keep databases and warehouses fast and clean","Fix broken or late data"],f:"You like building reliable systems more than analyzing results."},
+j_mle:{w:"Machine learning engineers take AI models from a prototype to a real product that runs all day for many users. They make sure models are fast, monitored and updated when they get worse.",d:["Package and deploy models","Monitor accuracy and speed","Retrain with fresh data"],f:"You like both AI and solid software engineering."},
+j_airs:{w:"AI research scientists invent new AI methods, such as better ways for models to learn or reason. Most have a master's or PhD and publish papers.",d:["Read the latest research papers","Design and run experiments","Write up and share results"],f:"You are deeply curious, love math, and are fine with many failed experiments."},
+j_cve:{w:"Computer vision engineers teach computers to understand images and video, such as reading X-rays, spotting defects on a factory line or helping cars see. It is AI applied to what cameras capture.",d:["Collect and label images","Train and test vision models","Make models run fast on real devices"],f:"You like visual problems and the thrill of a model seeing something for the first time."},
+j_llm:{w:"LLM and AI application engineers build products on top of language models, like chat assistants, study tools or document search. Much of the work is connecting models to real data and making them behave reliably.",d:["Design prompts and workflows","Connect models to company data and tools","Test for wrong or unsafe answers"],f:"You like fast-moving tech and building useful things quickly."},
+j_gpu:{w:"GPU and high-performance computing engineers make heavy calculations run fast by spreading them across thousands of tiny processors. This is what lets AI models train and simulations finish in hours instead of weeks.",d:["Rewrite slow code to run in parallel","Measure and tune performance","Work with hardware and research teams"],f:"You like squeezing speed out of machines and enjoy low-level detail."},
+j_aiinfra:{w:"AI infrastructure engineers build the systems that train and serve very large AI models: clusters of GPUs, fast networks and tools to keep it all running. Without them, big AI products can't exist.",d:["Manage GPU clusters","Build tools for training and serving models","Reduce cost and downtime"],f:"You like big systems, hardware and the infrastructure side of AI."},
+
+j_game:{w:"Game developers build games: the rules, how characters behave, the physics, and the tools artists use. It combines programming with creativity and a lot of playtesting.",d:["Code gameplay features","Fix bugs and tune how it feels","Work closely with artists and designers"],f:"You love games and enjoy both creative and technical problems."},
+j_gfx:{w:"Graphics engineers write the code that draws images on screen: lighting, shadows, 3D worlds and special effects, in games, films, design tools and AR/VR.",d:["Write shaders and rendering code","Find and speed up slow frames","Try new visual techniques"],f:"You like math you can see, and pretty pictures made from code."},
+j_ux:{w:"UX and product designers decide how an app or website works and feels, so people can use it without confusion. They talk to users, sketch ideas and test them before engineers build anything.",d:["Interview and observe users","Sketch and prototype in tools like Figma","Test and improve designs"],f:"You are empathetic, visual and like making things easier for people."},
+
+j_pm:{w:"Product managers decide what a team should build and why. They listen to users, weigh ideas against time and money, and keep designers and engineers pulling in the same direction.",d:["Talk to users and collect feedback","Prioritize what to build next","Check results after launch"],f:"You like people, planning and being the glue of a team."},
+j_sales:{w:"Solutions and sales engineers help customers understand and adopt a technical product. They demo it, answer hard technical questions and fit it to the customer's needs.",d:["Give product demos","Answer technical questions from customers","Work with the sales and product teams"],f:"You like explaining tech and talking with people more than coding all day."},
+j_consult:{w:"Technical consultants are hired by many different companies to solve technology problems, from building a dashboard to moving systems to the cloud. Each project teaches you a new industry.",d:["Understand a client's problem","Build or recommend a solution","Present progress and results"],f:"You like variety, learning fast and working with different people."},
+j_dev:{w:"Developer advocates and technical creators explain technology to the public through tutorials, talks, videos and sample projects. They are the bridge between a product and the people who use it.",d:["Make tutorials, videos or talks","Build demo projects","Collect developer feedback for the product team"],f:"You enjoy teaching and sharing what you've learned."},
+j_founder:{w:"Startup founders build a company around a product, often starting with one idea and a small team. They do a bit of everything: build, sell, hire and raise money.",d:["Build and ship a first product","Talk to customers","Handle money, hiring and plans"],f:"You are comfortable with uncertainty and like owning an idea from start to finish."},
+j_quant:{w:"Quantitative analysts, or quants, use math and code to model financial markets, such as pricing, risk and trading strategies. The work is math-heavy, often well paid, and high pressure.",d:["Build and test mathematical models","Analyze large sets of market data","Code tools for traders"],f:"You love probability, statistics and fast, careful thinking."},
+j_or:{w:"Operations research analysts use math to find the best way to run things like delivery routes, staff schedules or factory output. It is optimization applied to real-life logistics.",d:["Turn a problem into equations","Run optimization software","Recommend changes and measure the savings"],f:"You like puzzles with real-world impact and clear numbers."},
+
+j_dentaleng:{w:"Dental technology engineers design the tools of modern dentistry: 3D scanners, crown-making software, aligners and surgical guides. They connect what dentists need with what technology can do.",d:["Develop scanning, design or printing tools","Test devices with dentists and labs","Improve accuracy and comfort for patients"],f:"You want to stay close to dentistry while building the tools yourself."},
+j_dentalai:{w:"Dental imaging AI scientists train models to read dental X-rays and 3D scans, for example to spot cavities or plan implants. The AI acts as a second pair of eyes for the dentist.",d:["Work with dentists to label scans","Train and evaluate AI models","Test how well they work in real clinics"],f:"You like AI and already know what dentists look for in an image."},
+j_prost:{w:"Prosthetics and implant engineers design custom replacements for the body, like artificial limbs, joint implants or dental implants. They use 3D scans and materials science to fit each person.",d:["Model parts in 3D from patient scans","Pick materials that the body accepts","Test strength and fit"],f:"You like hands-on design and directly helping patients."},
+j_meddev:{w:"Medical device engineers design and test devices used in healthcare, such as heart monitors, insulin pumps or surgical tools. Safety rules are strict, so documentation matters as much as design.",d:["Design and prototype devices","Test them against safety standards","Work with doctors and regulators"],f:"You like building physical things that can protect or heal people."},
+j_medai:{w:"Medical AI engineers build software that learns from medical data to help doctors, such as reading scans or flagging risky heart signals. It must be accurate, well tested and explainable.",d:["Prepare medical images and signals","Train and validate models","Work with doctors and nurses"],f:"You like AI and want your work to affect healthcare."},
+j_imgsw:{w:"Medical imaging software engineers build the programs that scanners and hospitals use to show and analyze CT, MRI and ultrasound images. Good software helps doctors see more clearly.",d:["Build viewers and 3D visualization","Process images from scanners","Keep it fast and reliable"],f:"You like graphics and software, with a healthcare mission."},
+j_bme:{w:"Clinical biomedical engineers keep hospital equipment working and safe, and help choose new equipment. They are the technical partners of nurses and doctors.",d:["Maintain and test machines","Train staff on new equipment","Advise on buying decisions"],f:"You like fixing things, hands-on work and being inside a hospital."},
+j_neuro:{w:"Neurotech and brain-computer-interface engineers build devices that read or stimulate the brain and nerves, to help with paralysis, hearing or research. The field sits between electronics, signal processing and neuroscience.",d:["Build circuits and software for brain signals","Decode signals with machine learning","Test with researchers and patients"],f:"You are fascinated by the brain and enjoy frontier science."},
+j_hi:{w:"Health informatics engineers build and connect the systems hospitals use for patient records, appointments and results. Standards like FHIR let different systems share information safely.",d:["Build data systems for clinics","Connect hospital software together","Protect patient privacy"],f:"You like software and organizing information, with a healthcare focus."},
+j_bioinf:{w:"Bioinformatics scientists use programming and statistics to understand biological data, such as DNA, proteins or patient records. Their work supports drug discovery and genetic medicine.",d:["Analyze genetic and lab data with code","Build tools for biologists","Interpret results with scientists"],f:"You like both biology and coding."},
+j_biostat:{w:"Biostatisticians design and analyze medical studies, to learn whether a treatment really works. They make sure conclusions are backed by solid numbers, not luck.",d:["Plan how a study is run","Analyze results with statistics","Write reports for researchers and regulators"],f:"You like statistics and want to be sure health claims are true."},
+j_reg:{w:"Regulatory and quality engineers get medical products approved and keep them compliant. They know the rules, such as ISO 13485, and make sure the paperwork and testing prove the product is safe.",d:["Prepare documentation for approval","Run audits and quality checks","Talk with regulators"],f:"You are careful and organized, and care about patient safety."},
+
+j_emb:{w:"Embedded and firmware engineers write the software inside devices that aren't ordinary computers, from earbuds and smart watches to car parts. The code runs on small chips with little memory and must be reliable.",d:["Program microcontrollers in C or C++","Read sensors and control motors","Debug with hardware tools like oscilloscopes"],f:"You like both code and physical gadgets."},
+j_iot:{w:"IoT engineers build connected devices, like smart sensors on a farm or in a factory, and the cloud systems that collect their data. It's electronics, networking and software together.",d:["Build sensor devices","Connect them to the internet","Show the data on dashboards"],f:"You like projects that touch the real world and the cloud."},
+j_hw:{w:"Hardware engineers design the circuits and boards inside electronic products, from sensors to consumer gadgets. They choose parts, draw the circuit and test prototypes.",d:["Design circuit boards","Build and test prototypes","Solve problems like noise, heat and power"],f:"You like electronics and building things you can hold."},
+j_fpga:{w:"FPGA engineers design custom digital hardware on reprogrammable chips. It can run much faster than normal software for tasks like trading, video and radio.",d:["Write hardware descriptions in Verilog or VHDL","Simulate and test designs","Load them onto an FPGA board"],f:"You like digital logic and performance."},
+j_dsp:{w:"DSP and audio engineers process sound, radio and sensor signals in real time, in things like noise-cancelling headphones, phones and radar. They use math to clean, compress and understand signals.",d:["Design filters and algorithms","Run them on chips","Test with real recordings"],f:"You like math, music or sound, and seeing math shape a signal."},
+j_rf:{w:"RF and telecom engineers design the radios, antennas and networks behind wifi, 5G and satellites. Wireless is invisible, so much of the work is measuring and simulating.",d:["Design antennas and radio circuits","Test coverage and signal quality","Plan networks"],f:"You are curious about how phones talk to the world."},
+j_asic:{w:"ASIC and VLSI design engineers design computer chips, like processors for phones or AI. A chip has billions of tiny switches, so teams use special tools and spend months checking.",d:["Describe chip logic in code","Simulate and tune it","Hand the design to the factory"],f:"You like digital logic and big, careful projects."},
+j_verif:{w:"Design verification engineers prove a chip design works before the expensive manufacturing step. Fixing a chip after it is made is extremely costly, so this is a huge share of chip jobs.",d:["Write tests for chip designs","Hunt for hidden bugs","Check against the specification"],f:"You like finding bugs and thinking about edge cases."},
+j_semi:{w:"Semiconductor process engineers run and improve the steps in a chip factory, where silicon is printed, etched and layered. Tiny changes can mean big differences in how many chips work.",d:["Monitor and tune factory steps","Analyze data to find defects","Work with equipment and materials teams"],f:"You like physics, chemistry and data-driven problem solving."},
+
+j_robsw:{w:"Robotics software engineers write the code that lets robots sense their surroundings, plan moves and act. It combines programming, math and cameras or other sensors.",d:["Write robot software with ROS","Test in simulation and on real robots","Work with mechanical and electrical teams"],f:"You like code you can see move in the real world."},
+j_robctl:{w:"Robotics controls engineers design the feedback loops that make robots move smoothly and precisely. It works like a thermostat that keeps a room warm, but for arms, legs and wheels.",d:["Model how a machine moves","Design and tune controllers","Test on hardware"],f:"You like math applied to motion."},
+j_mecha:{w:"Mechatronics engineers design machines that mix mechanics, electronics and software, like robot arms, 3D printers and smart appliances.",d:["Design parts and electronics together","Program the controller","Build and test prototypes"],f:"You like building and don't want to pick just one engineering field."},
+j_auto:{w:"Industrial automation engineers automate factories and processes, using sensors, controllers (PLCs) and robots. Automation makes products faster, safer and more consistent.",d:["Design and program control systems","Install and start up machines","Troubleshoot on the factory floor"],f:"You like practical, hands-on engineering."},
+j_drone:{w:"Drone and UAV engineers design and program unmanned aircraft: the flight controller, sensors and autonomy. Drones now inspect, deliver and map.",d:["Tune flight controllers","Add sensors like cameras and GPS","Test in simulation, then in flight"],f:"You like flying machines and control problems."},
+j_av:{w:"Autonomous vehicle engineers work on self-driving cars and delivery robots: seeing the road, predicting what others will do and planning safe moves.",d:["Work on camera and lidar perception","Build planning and control","Test in simulation and on roads"],f:"You like AI, robotics and safety-critical problems."},
+j_sim:{w:"Simulation engineers build computer models of real systems, like airflow over a wing or a robot's motion. Companies test designs virtually before building anything.",d:["Build and check models","Run experiments","Compare with real data"],f:"You like physics and coding together."},
+
+j_power:{w:"Power electronics engineers design the devices that convert and control electricity, such as chargers, solar inverters and motor drives. Efficient conversion saves energy and heat.",d:["Design power circuits","Test efficiency and safety","Work on chargers and drives"],f:"You like electronics with big currents and real-world impact."},
+j_bat:{w:"Battery and EV engineers work on the cells, packs and charging systems behind electric vehicles and energy storage. Better batteries mean longer range and lower cost.",d:["Test and model battery performance","Design battery management systems","Work with heat and safety teams"],f:"You care about clean energy and like chemistry plus electronics."},
+j_grid:{w:"Power systems engineers plan and run the electricity grid, especially as more solar and wind power joins it. They keep supply and demand in balance.",d:["Model how the grid behaves","Plan how to add renewable power","Analyze outages and loads"],f:"You like big infrastructure and energy."},
+j_mat:{w:"Materials engineers choose and develop the substances products are made from, such as stronger metals, lighter plastics, better batteries or implant-safe materials.",d:["Test materials in labs","Study how they fail","Advise product teams"],f:"You like chemistry, physics and hands-on testing."},
+
+j_prof:{w:"University researchers and lecturers teach students and do research. They publish papers, supervise students and apply for research funding. The path usually requires a PhD.",d:["Teach and mentor","Run research projects","Write papers and grant applications"],f:"You love learning, teaching and long-term questions."},
+j_rnd:{w:"Industry R&D scientists work inside companies or labs on new technology, from new batteries to AI methods. The work is often more applied than in a university.",d:["Run experiments and build prototypes","Share findings with teams","Turn discoveries into products"],f:"You want to invent new things with a company's resources."},
+j_qe:{w:"Quantum engineers and researchers work on computers that use quantum physics. Some build the hardware, others design the algorithms. The field is young, and most roles need graduate study.",d:["Build or model quantum systems","Write and test quantum algorithms","Read and publish research"],f:"You love physics and are happy working at the edge of what's known."},
+j_photo:{w:"Photonics and optical engineers design devices that use light, like lasers, camera lenses, lidar and fibre-optic cables. It is essential to communications, medicine and sensing.",d:["Design optical systems","Test lasers and detectors","Work on cameras, lidar or fibre"],f:"You like physics you can see and build."}
+};
+
+(function(){
+'use strict';
+var TYPES={s:'Skill',t:'Tool',p:'Project',f:'Field',j:'Role'};
+var TCOL={s:'t-s',t:'t-t',p:'t-p',f:'t-f',j:'t-j'};
+var D=RAW.map(function(r){return {id:r[0],t:r[1],name:r[2],p:r[3],note:r[4],proj:r[5],res:(r[6]||[]).map(function(s){var i=s.indexOf('|');return {l:s.slice(0,i),u:s.slice(i+1)};}),c:[]};});
+var M={};D.forEach(function(n){M[n.id]=n;});
+D.forEach(function(n){n.p.forEach(function(p){M[p].c.push(n.id);});});
+var depth={};
+function dep(id){if(depth[id]!=null)return depth[id];var n=M[id];return depth[id]=n.p.length?1+Math.max.apply(null,n.p.map(dep)):0;}
+D.forEach(function(n){dep(n.id);});
+var order=D.slice().sort(function(a,b){return depth[a.id]-depth[b.id];});
+var roots=D.filter(function(n){return !n.p.length;});
+var GROUPS=[
+ {
+  "k": "sw",
+  "name": "Software and web",
+  "blurb": "Apps, websites and the core software underneath them.",
+  "ids": [
+   "j_swe",
+   "j_fe",
+   "j_be",
+   "j_fs",
+   "j_mob",
+   "j_sys",
+   "j_comp"
+  ]
+ },
+ {
+  "k": "cloud",
+  "name": "Cloud and security",
+  "blurb": "Running software at scale and keeping it safe.",
+  "ids": [
+   "j_devops",
+   "j_sre",
+   "j_cloud",
+   "j_sec",
+   "j_pen",
+   "j_secres"
+  ]
+ },
+ {
+  "k": "ai",
+  "name": "AI and data",
+  "blurb": "Turning data into insight, models and AI products.",
+  "ids": [
+   "j_analyst",
+   "j_ds",
+   "j_de",
+   "j_mle",
+   "j_airs",
+   "j_cve",
+   "j_llm",
+   "j_gpu",
+   "j_aiinfra"
+  ]
+ },
+ {
+  "k": "gd",
+  "name": "Games and design",
+  "blurb": "Games, visuals, and how products look and feel.",
+  "ids": [
+   "j_game",
+   "j_gfx",
+   "j_ux"
+  ]
+ },
+ {
+  "k": "biz",
+  "name": "Product and business",
+  "blurb": "Deciding what to build, selling it, or building a company. Also math applied to money and operations.",
+  "ids": [
+   "j_pm",
+   "j_sales",
+   "j_consult",
+   "j_dev",
+   "j_founder",
+   "j_quant",
+   "j_or"
+  ]
+ },
+ {
+  "k": "med",
+  "name": "Health and biomedical",
+  "blurb": "Technology for medicine and dentistry. Closest to a dentistry background.",
+  "ids": [
+   "j_dentaleng",
+   "j_dentalai",
+   "j_prost",
+   "j_meddev",
+   "j_medai",
+   "j_imgsw",
+   "j_bme",
+   "j_neuro",
+   "j_hi",
+   "j_bioinf",
+   "j_biostat",
+   "j_reg"
+  ]
+ },
+ {
+  "k": "elec",
+  "name": "Electronics and chips",
+  "blurb": "Circuits, devices, and the chips inside them.",
+  "ids": [
+   "j_emb",
+   "j_iot",
+   "j_hw",
+   "j_fpga",
+   "j_dsp",
+   "j_rf",
+   "j_asic",
+   "j_verif",
+   "j_semi"
+  ]
+ },
+ {
+  "k": "rob",
+  "name": "Robotics and automation",
+  "blurb": "Machines that sense, decide and move.",
+  "ids": [
+   "j_robsw",
+   "j_robctl",
+   "j_mecha",
+   "j_auto",
+   "j_drone",
+   "j_av",
+   "j_sim"
+  ]
+ },
+ {
+  "k": "energy",
+  "name": "Energy and materials",
+  "blurb": "Power, batteries, and the materials behind them.",
+  "ids": [
+   "j_power",
+   "j_bat",
+   "j_grid",
+   "j_mat"
+  ]
+ },
+ {
+  "k": "res",
+  "name": "Research and frontier",
+  "blurb": "Pushing a field forward in labs and universities.",
+  "ids": [
+   "j_prof",
+   "j_rnd",
+   "j_qe",
+   "j_photo"
+  ]
+ }
+];
+var RG={},GN={};GROUPS.forEach(function(g){GN[g.k]=g.name;g.ids.forEach(function(id){RG[id]=g.k;});});
+
+
+var W=208,H=52,CW=272,RH=64,PAD=24;
+var exp=new Set(roots.map(function(r){return r.id;}));
+var sel=null,focusType=null,vis=new Set(),pos={};
+var only=null,pathRole=null,view='map';
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var $=function(id){return document.getElementById(id);};
+var vp=$('vp'),canvas=$('canvas'),svg=$('edges'),detail=$('detail');
+function h(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+var NS='http://www.w3.org/2000/svg';
+function glyph(t){
+  var s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 16 16');s.setAttribute('width','16');s.setAttribute('height','16');s.setAttribute('class','glyph');s.setAttribute('aria-hidden','true');
+  var e;
+  if(t==='s'){e=document.createElementNS(NS,'circle');e.setAttribute('cx','8');e.setAttribute('cy','8');e.setAttribute('r','5.2');e.setAttribute('fill','none');e.setAttribute('stroke','currentColor');e.setAttribute('stroke-width','1.8');}
+  else if(t==='t'){e=document.createElementNS(NS,'rect');e.setAttribute('x','3');e.setAttribute('y','3');e.setAttribute('width','10');e.setAttribute('height','10');e.setAttribute('rx','2');e.setAttribute('fill','none');e.setAttribute('stroke','currentColor');e.setAttribute('stroke-width','1.8');}
+  else if(t==='p'){e=document.createElementNS(NS,'path');e.setAttribute('d','M8 2L14 8L8 14L2 8Z');e.setAttribute('fill','none');e.setAttribute('stroke','currentColor');e.setAttribute('stroke-width','1.8');e.setAttribute('stroke-linejoin','round');}
+  else if(t==='f'){e=document.createElementNS(NS,'path');e.setAttribute('d','M4.5 2.5H11.5L15 8L11.5 13.5H4.5L1 8Z');e.setAttribute('fill','none');e.setAttribute('stroke','currentColor');e.setAttribute('stroke-width','1.7');e.setAttribute('stroke-linejoin','round');}
+  else {e=document.createElementNS(NS,'path');e.setAttribute('d','M8 2L14.5 13.5H1.5Z');e.setAttribute('fill','currentColor');e.setAttribute('stroke','currentColor');e.setAttribute('stroke-width','1.2');e.setAttribute('stroke-linejoin','round');}
+  s.appendChild(e);return s;
+}
+
+var els={},togs={},edges=[],wasVis={};
+D.forEach(function(n){
+  var el=h('div','node '+TCOL[n.t]+(n.c.length?'':' leaf')+(RG[n.id]?' g-'+RG[n.id]:''));el.hidden=true;el.dataset.id=n.id;
+  var b=h('button','body');b.type='button';b.title=n.name;
+  var txt=h('span','txt');txt.append(h('span','kind',TYPES[n.t]),h('span','name',n.name));
+  b.append(glyph(n.t),txt);
+  b.addEventListener('click',function(){onBody(n.id);});
+  el.append(b);
+  if(n.c.length){var t=h('button','tog');t.type='button';t.addEventListener('click',function(e){e.stopPropagation();toggle(n.id);});el.append(t);togs[n.id]=t;}
+  canvas.append(el);els[n.id]=el;
+  n.p.forEach(function(p){var path=document.createElementNS(NS,'path');path.setAttribute('class','edge');path.setAttribute('marker-end','url(#ah)');path.style.display='none';svg.append(path);edges.push({f:p,t:n.id,el:path});});
+});
+
+function compute(){
+  if(only){vis=new Set(only);}
+  else{
+    vis=new Set(roots.map(function(r){return r.id;}));
+    order.forEach(function(n){if(n.p.length&&n.p.some(function(p){return vis.has(p)&&exp.has(p);}))vis.add(n.id);});
+  }
+  var open=function(p){return only?true:exp.has(p);};
+  var kids={};vis.forEach(function(id){kids[id]=[];});
+  D.forEach(function(n){
+    if(!vis.has(n.id)||!n.p.length)return;
+    var pr=n.p.find(function(p){return vis.has(p)&&open(p);});
+    kids[pr].push(n.id);
+  });
+  var col={};
+  order.forEach(function(n){
+    if(!vis.has(n.id))return;
+    col[n.id]=n.p.length?1+Math.max.apply(null,n.p.filter(function(p){return vis.has(p);}).map(function(p){return col[p];})):0;
+  });
+  var y={},leaf=0;
+  function pl(id){var k=kids[id];if(!k.length){y[id]=leaf++;}else{k.forEach(pl);y[id]=(y[k[0]]+y[k[k.length-1]])/2;}}
+  roots.forEach(function(r){if(!vis.has(r.id))return;pl(r.id);leaf+=0.5;});
+  var maxc=0;pos={};
+  vis.forEach(function(id){pos[id]={x:PAD+col[id]*CW,y:PAD+y[id]*RH};if(col[id]>maxc)maxc=col[id];});
+  return {w:PAD*2+maxc*CW+W,h:PAD*2+Math.max(leaf-0.5,1)*RH};
+}
+
+function render(){
+  var dim=compute();
+  if(sel&&!vis.has(sel))sel=null;
+  canvas.style.width=dim.w+'px';canvas.style.height=dim.h+'px';
+  svg.setAttribute('width',dim.w);svg.setAttribute('height',dim.h);
+  canvas.classList.toggle('pathmode',!!only);
+  var hl=null;
+  if(sel&&!(only&&sel===pathRole)){
+    hl=new Set([sel]);
+    (function up(id){M[id].p.forEach(function(p){if(vis.has(p)&&!hl.has(p)){hl.add(p);up(p);}});})(sel);
+    (function down(id){M[id].c.forEach(function(c){if(vis.has(c)&&!hl.has(c)){hl.add(c);down(c);}});})(sel);
+  }
+  D.forEach(function(n){
+    var el=els[n.id],v=vis.has(n.id);
+    if(v){
+      var p=pos[n.id];
+      el.style.setProperty('--tx',p.x+'px');el.style.setProperty('--ty',p.y+'px');
+      if(!wasVis[n.id]&&!reduce){el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter');}
+      el.classList.toggle('sel',sel===n.id);
+      el.classList.toggle('dim',(hl&&!hl.has(n.id))||(focusType&&n.t!==focusType));
+    }
+    el.hidden=!v;wasVis[n.id]=v;
+    var t=togs[n.id];
+    if(t){var open=exp.has(n.id);t.textContent=open?'−':'+'+n.c.length;t.setAttribute('aria-expanded',open);t.setAttribute('aria-label',(open?'Collapse ':'Expand ')+n.name+', '+n.c.length+' next steps');t.title=(open?'Collapse':'Show '+n.c.length+' next steps');}
+  });
+  edges.forEach(function(e){
+    if(!vis.has(e.f)||!vis.has(e.t)){e.el.style.display='none';return;}
+    var a=pos[e.f],b=pos[e.t];
+    var x1=a.x+W,y1=a.y+H/2,x2=b.x,y2=b.y+H/2,dx=Math.max(36,(x2-x1)*0.5);
+    e.el.setAttribute('d','M'+x1+','+y1+' C'+(x1+dx)+','+y1+' '+(x2-dx)+','+y2+' '+x2+','+y2);
+    e.el.style.display='';
+    var on=hl&&hl.has(e.f)&&hl.has(e.t);
+    e.el.classList.toggle('hl',!!on);
+    e.el.classList.toggle('dim',(hl&&!on)||!!focusType);
+  });
+  if(only){
+    $('count').textContent=(vis.size-1)+' prerequisites shown';
+    $('pathbar').hidden=false;
+    $('pathName').textContent='Path to '+M[pathRole].name;
+    $('pathSub').textContent=(vis.size-1)+' skills, tools and fields feed into this role. You do not need all of them: pick one branch at each stage.';
+  }else{
+    $('count').textContent=vis.size+' of '+D.length+' nodes shown';
+    $('pathbar').hidden=true;
+  }
+  renderDetail();
+}
+
+function chip(id){
+  var n=M[id],b=h('button','chip '+TCOL[n.t]);b.type='button';b.append(glyph(n.t),document.createTextNode(n.name));
+  b.addEventListener('click',function(){go(id);});return b;
+}
+function renderDetail(){
+  detail.textContent='';
+  if(!sel){
+    detail.append(h('div','kindrow','Start here'));
+    detail.append(h('h2',null,'Pick any node'));
+    detail.append(h('p',null,'Click a node to see what it is, free places to learn it, and a small project to try. Nodes marked with a plus open the next steps. Use the highlight buttons above to light up every skill, tool, project, field or role.'));
+    var dl=h('dl','legend');
+    [['s','A thing to learn.'],['t','Software or hardware you use.'],['p','Something you build to prove it.'],['f','An area that groups related work.'],['j','A job you can aim for.']].forEach(function(r){
+      var dt=h('dt',TCOL[r[0]]);dt.append(glyph(r[0]),document.createTextNode(TYPES[r[0]]));
+      var dd=h('dd',null,r[1]);dl.append(dt,dd);
+    });
+    detail.append(dl);
+    return;
+  }
+  var n=M[sel];
+  var kr=h('div','kindrow '+TCOL[n.t]+(RG[n.id]?' g-'+RG[n.id]+' g-on':''));kr.append(glyph(n.t),document.createTextNode(TYPES[n.t]+(RG[n.id]?' \u00b7 '+GN[RG[n.id]]:'')));
+  detail.append(kr,h('h2',null,n.name),h('p',null,n.note));
+  if(only&&sel===pathRole){
+    detail.append(h('h3',null,'Learning order'));
+    var byD={};anc(sel).forEach(function(id){(byD[depth[id]]=byD[depth[id]]||[]).push(id);});
+    var ol=h('ol','stages');
+    Object.keys(byD).map(Number).sort(function(a,b){return a-b;}).forEach(function(k,i){
+      var li=h('li');li.append(h('span','stg',String(i+1)));
+      var cs=h('div','chips');byD[k].sort(function(a,b){return D.indexOf(M[a])-D.indexOf(M[b]);}).forEach(function(id){cs.append(chip(id));});
+      li.append(cs);ol.append(li);
+    });
+    detail.append(ol);
+  }
+  if(n.res.length){
+    detail.append(h('h3',null,'Learn from'));
+    var ul=h('ul');
+    n.res.forEach(function(r){var li=h('li'),a=h('a',null,r.l+' ↗');a.href=r.u;a.target='_blank';a.rel='noopener noreferrer';li.append(a);ul.append(li);});
+    detail.append(ul);
+  }
+  if(n.proj){detail.append(h('h3',null,'Starter project'));detail.append(h('p',null,n.proj));}
+  var inSet=function(id){return !only||only.has(id);};
+  var bp=n.p.filter(inSet),bc=n.c.filter(inSet);
+  if(bp.length&&!(only&&sel===pathRole)){detail.append(h('h3',null,'Builds on'));var c1=h('div','chips');bp.forEach(function(id){c1.append(chip(id));});detail.append(c1);}
+  if(bc.length){detail.append(h('h3',null,'Opens up'));var c2=h('div','chips');bc.forEach(function(id){c2.append(chip(id));});detail.append(c2);}
+}
+
+function behaviour(){return reduce?'auto':'smooth';}
+function ensureVisible(id,expanded){
+  var p=pos[id];if(!p)return;
+  var left=vp.scrollLeft,top=vp.scrollTop,cw=vp.clientWidth,ch=vp.clientHeight;
+  var right=p.x+W+(expanded?CW:0)+PAD;
+  if(right>left+cw)left=right-cw;
+  if(p.x-PAD<left)left=p.x-PAD;
+  if(p.y-PAD<top)top=p.y-PAD;
+  if(p.y+H+PAD>top+ch)top=p.y+H+PAD-ch;
+  vp.scrollTo({left:Math.max(0,left),top:Math.max(0,top),behavior:behaviour()});
+}
+function centerOn(id){
+  var p=pos[id];if(!p)return;
+  vp.scrollTo({left:Math.max(0,p.x+W/2-vp.clientWidth/2),top:Math.max(0,p.y+H/2-vp.clientHeight/2),behavior:behaviour()});
+}
+function onBody(id){
+  if(only){sel=id;render();return;}
+  var opened=false;sel=id;
+  if(M[id].c.length&&!exp.has(id)){exp.add(id);opened=true;}
+  render();ensureVisible(id,opened);
+}
+function toggle(id){
+  var opened=!exp.has(id);
+  if(opened)exp.add(id);else exp.delete(id);
+  render();if(opened)ensureVisible(id,true);
+}
+function reveal(id){
+  if(vis.has(id))return;
+  var cur=id;
+  while(M[cur].p.length){cur=M[cur].p[0];exp.add(cur);}
+}
+function go(id){
+  if(only&&only.has(id)){sel=id;render();centerOn(id);return;}
+  if(only){only=null;pathRole=null;compute();}
+  reveal(id);sel=id;render();centerOn(id);
+}
+
+/* toolbar */
+$('reset').addEventListener('click',function(){only=null;pathRole=null;exp=new Set(roots.map(function(r){return r.id;}));sel=null;focusType=null;syncFilters();render();vp.scrollTo({left:0,top:0,behavior:behaviour()});});
+$('expandAll').addEventListener('click',function(){only=null;pathRole=null;exp=new Set(D.filter(function(n){return n.c.length;}).map(function(n){return n.id;}));render();});
+$('collapseAll').addEventListener('click',function(){only=null;pathRole=null;exp=new Set();sel=null;render();vp.scrollTo({left:0,top:0,behavior:behaviour()});});
+
+var filterBtns={};
+['s','t','p','f','j'].forEach(function(t){
+  var count=D.filter(function(n){return n.t===t;}).length;
+  var b=h('button','filter '+TCOL[t]);b.type='button';b.setAttribute('aria-pressed','false');b.title='Highlight '+TYPES[t].toLowerCase()+'s';
+  b.append(glyph(t),document.createTextNode(TYPES[t]));b.append(h('span','n',String(count)));
+  b.addEventListener('click',function(){focusType=(focusType===t)?null:t;syncFilters();render();});
+  $('filters').append(b);filterBtns[t]=b;
+});
+function syncFilters(){Object.keys(filterBtns).forEach(function(t){filterBtns[t].setAttribute('aria-pressed',String(focusType===t));});}
+
+/* search */
+var q=$('q'),resUl=$('results');
+function hideRes(){resUl.hidden=true;resUl.textContent='';}
+function search(){
+  var v=q.value.trim().toLowerCase();resUl.textContent='';
+  if(!v){resUl.hidden=true;return [];}
+  var m=D.filter(function(n){return n.name.toLowerCase().indexOf(v)>-1;}).slice(0,8);
+  if(!m.length){var li=h('li','none','No match');resUl.append(li);}
+  m.forEach(function(n){var li=h('li'),b=h('button',TCOL[n.t]);b.type='button';b.append(glyph(n.t),document.createTextNode(n.name+'  ·  '+TYPES[n.t]));b.addEventListener('click',function(){go(n.id);q.value='';hideRes();});li.append(b);resUl.append(li);});
+  resUl.hidden=false;return m;
+}
+q.addEventListener('input',search);
+q.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){var m=search();if(m.length){go(m[0].id);q.value='';hideRes();}}
+  else if(e.key==='Escape'){q.value='';hideRes();}
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.search'))hideRes();});
+
+/* drag to pan (mouse) */
+var pan=null;
+vp.addEventListener('pointerdown',function(e){
+  if(e.pointerType!=='mouse'||e.button!==0||e.target.closest('.node'))return;
+  pan={x:e.clientX,y:e.clientY,l:vp.scrollLeft,t:vp.scrollTop};vp.classList.add('panning');vp.setPointerCapture(e.pointerId);
+});
+vp.addEventListener('pointermove',function(e){if(!pan)return;vp.scrollLeft=pan.l-(e.clientX-pan.x);vp.scrollTop=pan.t-(e.clientY-pan.y);});
+function endPan(){pan=null;vp.classList.remove('panning');}
+vp.addEventListener('pointerup',endPan);vp.addEventListener('pointercancel',endPan);
+
+
+/* ancestors */
+var ancMemo={};
+function anc(id){
+  if(ancMemo[id])return ancMemo[id];
+  var s=new Set();
+  M[id].p.forEach(function(p){s.add(p);anc(p).forEach(function(x){s.add(x);});});
+  return ancMemo[id]=s;
+}
+
+/* tabs */
+var tabMap=$('tab-map'),tabRoles=$('tab-roles');
+function setView(v){
+  view=v;
+  $('mapView').hidden=v!=='map';$('rolesView').hidden=v!=='roles';
+  tabMap.setAttribute('aria-selected',String(v==='map'));tabRoles.setAttribute('aria-selected',String(v==='roles'));
+  tabMap.tabIndex=v==='map'?0:-1;tabRoles.tabIndex=v==='roles'?0:-1;
+  if(v==='roles')renderRoles();else render();
+}
+tabMap.addEventListener('click',function(){setView('map');});
+tabRoles.addEventListener('click',function(){setView('roles');});
+[tabMap,tabRoles].forEach(function(tb){tb.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var v=view==='map'?'roles':'map';setView(v);(v==='map'?tabMap:tabRoles).focus();e.preventDefault();}
+});});
+
+/* roles view */
+var roles=D.filter(function(n){return n.t==='j';});
+var ROOTLBL={prog:'Programming',mp:'Math',elec:'Electronics'};
+var rf={q:'',roots:new Set(),groups:new Set(),sort:'group',collapsed:new Set()};
+$('roleCount').textContent=String(roles.length);
+GROUPS.forEach(function(g){
+  var b=h('button','filter gchip g-'+g.k);b.type='button';b.setAttribute('aria-pressed','false');
+  b.append(h('span','dot'),document.createTextNode(g.name),h('span','n',String(g.ids.length)));
+  b.addEventListener('click',function(){
+    if(rf.groups.has(g.k))rf.groups.delete(g.k);else rf.groups.add(g.k);
+    b.setAttribute('aria-pressed',String(rf.groups.has(g.k)));renderRoles();
+  });
+  $('groupFilters').append(b);
+});
+roots.forEach(function(r){
+  var b=h('button','filter',ROOTLBL[r.id]||r.name);b.type='button';b.setAttribute('aria-pressed','false');
+  b.addEventListener('click',function(){
+    if(rf.roots.has(r.id))rf.roots.delete(r.id);else rf.roots.add(r.id);
+    b.setAttribute('aria-pressed',String(rf.roots.has(r.id)));renderRoles();
+  });
+  $('rootFilters').append(b);
+});
+$('rq').addEventListener('input',function(){rf.q=this.value.trim().toLowerCase();renderRoles();});
+$('rsort').addEventListener('change',function(){rf.sort=this.value;renderRoles();});
+$('rfold').addEventListener('click',function(){
+  if(this.dataset.all==='1')rf.collapsed.clear();else GROUPS.forEach(function(g){rf.collapsed.add(g.k);});
+  renderRoles();
+});
+function matches(n){
+  if(rf.q&&(n.name+' '+n.note+' '+GN[RG[n.id]]).toLowerCase().indexOf(rf.q)<0)return false;
+  if(rf.groups.size&&!rf.groups.has(RG[n.id]))return false;
+  var a=anc(n.id),ok=true;rf.roots.forEach(function(r){if(!a.has(r))ok=false;});return ok;
+}
+function card(n){
+  var li=h('li'),b=h('button','rolecard g-'+RG[n.id]);b.type='button';
+  var gl=h('div','rgrp');gl.append(glyph('j'),document.createTextNode(GN[RG[n.id]]));
+  var foot=h('div','rfoot');foot.append(h('span',null,anc(n.id).size+' to learn first'));
+  roots.forEach(function(r){if(anc(n.id).has(r.id))foot.append(h('span','tag',ROOTLBL[r.id]||r.name));});
+  b.append(gl,h('div','rname',n.name),h('div','rnote',n.note),foot);
+  b.setAttribute('aria-label',n.name+', '+GN[RG[n.id]]+'. '+n.note+' Read what it means.');
+  b.addEventListener('click',function(){openModal(n.id,b);});
+  li.append(b);return li;
+}
+function renderRoles(){
+  var body=$('rbody');body.textContent='';
+  var list=roles.filter(matches);
+  $('rcount').textContent=list.length+' of '+roles.length+' roles';
+  var fold=$('rfold');fold.hidden=rf.sort!=='group';
+  if(!list.length){body.append(h('p','hint','No roles match. Clear a filter.'));return;}
+  if(rf.sort==='group'){
+    var shown=[];
+    GROUPS.forEach(function(g){
+      var items=g.ids.map(function(id){return M[id];}).filter(matches);
+      if(!items.length)return;
+      shown.push(g.k);
+      var sec=h('section','rgroup g-'+g.k),hd=h('h2','rgh'),hb=h('button','rghb');hb.type='button';
+      var closed=rf.collapsed.has(g.k);
+      hb.setAttribute('aria-expanded',String(!closed));
+      hb.append(h('span','dot'),h('span','gname',g.name),h('span','gn',String(items.length)),h('span','gblurb',g.blurb),h('span','chev',closed?'+':'\u2212'));
+      hb.addEventListener('click',function(){if(rf.collapsed.has(g.k))rf.collapsed.delete(g.k);else rf.collapsed.add(g.k);renderRoles();});
+      hd.append(hb);sec.append(hd);
+      if(!closed){var ul=h('ul','rolegrid');items.forEach(function(n){ul.append(card(n));});sec.append(ul);}
+      body.append(sec);
+    });
+    var all=shown.every(function(k){return rf.collapsed.has(k);});
+    fold.textContent=all?'Expand groups':'Collapse groups';fold.dataset.all=all?'1':'';
+  }else{
+    if(rf.sort==='az')list.sort(function(a,b){return a.name.localeCompare(b.name);});
+    else if(rf.sort==='few')list.sort(function(a,b){return anc(a.id).size-anc(b.id).size;});
+    else if(rf.sort==='many')list.sort(function(a,b){return anc(b.id).size-anc(a.id).size;});
+    var ul2=h('ul','rolegrid');list.forEach(function(n){ul2.append(card(n));});body.append(ul2);
+  }
+}
+var lastFocus=null;
+function openModal(id,from){
+  var n=M[id],inf=INFO[id]||{w:n.note,d:[],f:''},dl=$('mdlg');
+  lastFocus=from||null;dl.textContent='';dl.className='mdlg g-'+RG[id];
+  var gl=h('div','mgrp');gl.append(glyph('j'),document.createTextNode(GN[RG[id]]));
+  var t=h('h2',null,n.name);t.id='mtitle';
+  var x=h('button','mx','\u00d7');x.type='button';x.setAttribute('aria-label','Close');x.addEventListener('click',closeModal);
+  dl.append(x,gl,t,h('p','mwhat',inf.w));
+  if(inf.d.length){dl.append(h('h3',null,'What you might do'));var ul=h('ul');inf.d.forEach(function(s){ul.append(h('li',null,s));});dl.append(ul);}
+  if(inf.f){var f=h('p','mfit');f.append(h('b',null,'Good fit if: '),document.createTextNode(inf.f));dl.append(f);}
+  var act=h('div','mact'),go=h('button','mgo','Open roadmap');go.type='button';
+  go.addEventListener('click',function(){closeModal(true);openPath(id);});
+  act.append(go,h('span','mmeta',anc(id).size+' steps on the way'));dl.append(act);
+  $('modal').hidden=false;document.body.style.overflow='hidden';go.focus();
+}
+function closeModal(skip){
+  $('modal').hidden=true;document.body.style.overflow='';
+  if(skip!==true&&lastFocus)try{lastFocus.focus();}catch(e){}
+}
+$('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){
+  if($('modal').hidden)return;
+  if(e.key==='Escape'){e.preventDefault();closeModal();}
+  else if(e.key==='Tab'){var b=$('mdlg').querySelectorAll('button'),a=b[0],z=b[b.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}
+    else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
+});
+function openPath(id){
+  only=new Set(anc(id));only.add(id);pathRole=id;sel=id;
+  setView('map');centerOn(id);
+}
+$('backRoles').addEventListener('click',function(){setView('roles');});
+$('showFull').addEventListener('click',function(){
+  var id=pathRole||sel;only=null;pathRole=null;compute();
+  if(id){reveal(id);sel=id;}
+  render();if(id)centerOn(id);
+});
+
+render();
+})();
+</script>
+
+</body></html>
