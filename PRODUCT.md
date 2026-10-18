@@ -45,7 +45,7 @@ Self-directed study. Users open links to free external courses (CS50, Khan Acade
 
 ## Evidence on Hand
 
-All content lives in `Tech Engineering Pathways.html` (RAW node data, INFO role details, GROUPS). No testimonials, user counts or endorsements exist; do not fabricate any.
+All content lives in `index.html` (RAW node data, INFO role details, GROUPS). No testimonials, user counts or endorsements exist; do not fabricate any.
 
 ## Product Principles
 

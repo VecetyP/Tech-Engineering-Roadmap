@@ -22,7 +22,7 @@ You can also browse **All roles**, **Projects** (filter by level and department)
 
 ## Running it
 
-Open `Tech Engineering Pathways.html` in any modern browser. That's it.
+Open `index.html` in any modern browser. That's it.
 
 To serve it locally instead (for example while editing):
 
@@ -30,9 +30,11 @@ To serve it locally instead (for example while editing):
 python -m http.server 8765
 ```
 
-Then visit `http://localhost:8765/Tech%20Engineering%20Pathways.html`.
+Then visit `http://localhost:8765/`.
 
-To publish it, upload the file to any static host, such as GitHub Pages, Netlify or Vercel.
+To publish it, upload the file to any static host, such as GitHub Pages, Netlify or Vercel. Keep it named `index.html` so it loads as the home page.
+
+On GitHub Pages: open the repository's **Settings → Pages**, set **Source** to **Deploy from a branch**, pick `main` and `/ (root)`, and save. The site appears at `https://<username>.github.io/<repository>/` within a minute or two.
 
 ## Good to know
 
