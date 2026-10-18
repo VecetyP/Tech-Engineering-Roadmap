@@ -327,6 +327,10 @@ ol.steps li::before{content:counter(st);flex:none;display:grid;place-items:cente
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 ::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+/* selected state wins over hover; hover on a selected item only dims it slightly */
+.chip[aria-pressed="true"],.chip[aria-pressed="true"]:hover,
+.opts .opt input:checked + span,.opts .opt:hover input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.chip[aria-pressed="true"]:hover,.opts .opt:hover input:checked + span{opacity:.88}
 </style>
 </head>
 <body>
