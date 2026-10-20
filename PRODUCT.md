@@ -35,7 +35,7 @@ Self-directed study. Users open links to free external courses (CS50, Khan Acade
 
 - ~167 nodes: Skills, Tools, Projects, Fields and Roles (~68 roles in ~10 groups: Software and web, Cloud, AI and data, Games and design, Business, Health/medical, Electronics, Robotics, Energy, Research).
 - Each node: plain-language note, one small project, free resource links. Each role has "what it is", day-to-day tasks, and "fits you if".
-- Existing features: interactive graph with expand/collapse, search, type filters, roles list with group/prerequisite filters and sorting, role detail modal, "show path to role".
+- Existing features: interactive graph with expand/collapse, search, type filters, roles list with group/prerequisite filters and sorting, role detail modal, "show path to role", a 20-statement role quiz (#/quiz) scored with fixed weights in `QUIZ`, no LLM.
 - Resources are free as of October 2026; not an official curriculum.
 
 ## Brand Commitments

@@ -346,6 +346,17 @@ ol.steps li::before{content:counter(st);flex:none;display:grid;place-items:cente
 .chip[aria-pressed="true"],.chip[aria-pressed="true"]:hover,
 .opts .opt input:checked + span,.opts .opt:hover input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--surface)}
 .chip[aria-pressed="true"]:hover,.opts .opt:hover input:checked + span{opacity:.88}
+.hero .qcta{display:flex;width:max-content;max-width:100%;margin-top:24px;background:var(--band-ink);color:var(--band);border-color:var(--band-ink)}
+.quiz{max-width:780px;margin-top:24px;background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:4px 24px 24px}
+.quiz .couplet:first-child{border-top:0}
+.opts.scale{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.opts.scale .opt span{justify-content:center;text-align:center;border-color:var(--rule-2);min-height:44px;padding:4px 6px}
+.qbtns{display:flex;gap:8px;flex-wrap:wrap}
+.qres{margin-top:48px}
+.qres .plate-head{color:var(--ink)}
+.mbar{display:block;height:6px;border-radius:999px;background:var(--sunk);overflow:hidden}
+.mbar i{display:block;height:100%;background:var(--g);transform-origin:left}
+@media (max-width:519px){.quiz{padding:4px 16px 16px}.opts.scale{gap:4px}.opts.scale .opt span{font-size:13px;padding:4px 2px}.keyfoot{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -366,6 +377,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#/" data-nav="home">Find a role</a>
+      <a href="#/quiz" data-nav="quiz">Quiz</a>
       <a href="#/roles" data-nav="roles">All roles</a>
       <a href="#/projects" data-nav="projects">Projects</a>
       <a href="#/skills" data-nav="skills">All skills</a>
@@ -858,6 +870,32 @@ const GROUPS=[
  }
 ];
 
+/* Role quiz. Each answer (1-5) is centred to -2..+2 and multiplied by these weights.
+   g: group keys from GROUPS. r: starting points (prog, mp, elec), used to rank roles inside a group.
+   y: finishes "Because you ..." on the results. */
+const QUIZ=[
+ {q:"I'd enjoy building websites or phone apps that lots of people use.",y:"want to build apps people use",g:{sw:3,gd:1},r:{prog:1}},
+ {q:"Solving logic puzzles, or hunting a bug until it's fixed, sounds fun.",y:"enjoy logic puzzles",g:{sw:2,cloud:1,ai:1},r:{prog:2}},
+ {q:"I like spotting patterns in numbers, charts or data.",y:"like finding patterns in data",g:{ai:3,biz:1,med:1},r:{mp:1}},
+ {q:"I'm curious how AI tools like chatbots and face recognition really work.",y:"are curious how AI works",g:{ai:3,res:1},r:{prog:1,mp:1}},
+ {q:"I like taking things apart or building gadgets with my hands.",y:"like building things with your hands",g:{elec:2,rob:2,energy:1},r:{elec:2}},
+ {q:"I'd love to make something that moves, like a robot, drone or self-driving car.",y:"want to make machines that move",g:{rob:3,elec:1},r:{elec:1,mp:1}},
+ {q:"I wonder what goes on inside circuits and computer chips.",y:"are curious about circuits and chips",g:{elec:3},r:{elec:2}},
+ {q:"Defending systems from hackers, or thinking like one, sounds exciting.",y:"are drawn to security",g:{cloud:3},r:{prog:1}},
+ {q:"I like keeping things running smoothly, and fixing them fast when they break.",y:"like keeping systems running",g:{cloud:3,sw:1}},
+ {q:"I care a lot about how things look and feel to use.",y:"care how things look and feel",g:{gd:3,sw:1}},
+ {q:"I play video games and would like to make one.",y:"want to make games",g:{gd:3},r:{prog:1}},
+ {q:"I'd like my work to help patients, doctors or dentists.",y:"want to help patients",g:{med:3}},
+ {q:"Clean energy, batteries or climate tech matter to me.",y:"care about clean energy",g:{energy:3},r:{mp:1}},
+ {q:"I'd rather talk with people and decide what to build than build it all myself.",y:"like working with people and deciding what to build",g:{biz:3,gd:1,sw:-1}},
+ {q:"Starting my own company one day appeals to me.",y:"want to start something of your own",g:{biz:2}},
+ {q:"I enjoy physics and hands-on science experiments.",y:"enjoy physics and experiments",g:{res:2,energy:1,elec:1,rob:1},r:{mp:2}},
+ {q:"I like going deep on one topic, even when the payoff is slow.",y:"like going deep on one topic",g:{res:3,ai:1}},
+ {q:"I'm open to studying for many years, such as a master's or PhD.",y:"are open to a long degree",g:{res:3,med:1,ai:1}},
+ {q:"I'm comfortable with math, or happy to work at it.",y:"are comfortable with math",g:{ai:2,biz:1,res:1,elec:1},r:{mp:2}},
+ {q:"I already have a background in health, biology or another science.",y:"have a health or science background",g:{med:3}}
+];
+
 </script>
 <script>
 (function(){
@@ -967,7 +1005,8 @@ function viewHome(){
   main.innerHTML=
   '<section class="hero"><div class="wrap">'+
     '<h1 class="view-title" tabindex="-1">Which tech engineering role fits you?</h1>'+
-    '<p class="lede">A field guide for complete beginners: '+roles.length+' real roles, what each one does all day, and a free step-by-step trail of skills to get there. Answer three questions to narrow it down.</p>'+resume+
+    '<p class="lede">A field guide for complete beginners: '+roles.length+' real roles, what each one does all day, and a free step-by-step trail of skills to get there. Answer three questions to narrow it down.</p>'+
+    '<a class="btn qcta" href="#/quiz">Not sure? Take the '+QUIZ.length+'-question quiz</a>'+resume+
   '</div></section>'+
   '<div class="wrap"><div class="field">'+
     '<form class="key" id="key" aria-labelledby="keyt"><h2 id="keyt">Identify your role</h2><p>Pick any lines that fit you. Skip a question to keep every option.</p>'+
@@ -1133,6 +1172,48 @@ function viewSkills(){
   }
   iq.addEventListener('input',draw);draw();
 }
+var QA={},QL=['No','Not really','Unsure','Mostly','Yes'],qShown=false;
+function quizTop(){
+  function tally(k){var o={};QUIZ.forEach(function(q,i){var w=q[k]||{},v=QA[i]?QA[i]-3:0;for(var x in w){o[x]=o[x]||{s:0,m:0};o[x].s+=v*w[x];o[x].m+=2*Math.abs(w[x]);}});return o;}
+  var G=tally('g'),R=tally('r');
+  // ponytail: 80% group fit, 20% starting-point fit; tune the split if results feel off
+  function part(i,g,rs){var q=QUIZ[i],v=QA[i]?QA[i]-3:0,c=0.8*v*((q.g||{})[g]||0)/G[g].m;
+    rs.forEach(function(x){c+=0.2*v*((q.r||{})[x]||0)/R[x].m/rs.length;});return c;}
+  var list=roles.map(function(r){
+    var g=RG[r.id],rs=['prog','mp','elec'].filter(function(x){return anc(r.id).has(x)&&R[x];}),s=0,why=[];
+    QUIZ.forEach(function(q,i){var c=part(i,g,rs);s+=c;if(c>0&&QA[i]>3)why.push({c:c,y:q.y});});
+    why.sort(function(a,b){return b.c-a.c;});
+    return {r:r,g:g,s:s,why:why.slice(0,2).map(function(w){return w.y;})};
+  }).sort(function(a,b){return b.s-a.s||anc(a.r.id).size-anc(b.r.id).size;});
+  var per={},top=[];
+  list.forEach(function(x){if(top.length<5&&(per[x.g]||0)<3){per[x.g]=(per[x.g]||0)+1;top.push(x);}});
+  return top;
+}
+function viewQuiz(){
+  main.innerHTML='<div class="wrap"><header class="pagehead"><h1 class="view-title" tabindex="-1">Role quiz</h1>'+
+    '<p class="lede">'+QUIZ.length+' quick statements, about four minutes. Say how much each one sounds like you, and get the roles that fit best. There are no wrong answers, and you can skip any you are unsure about.</p></header>'+
+    '<form class="quiz" id="quiz" aria-label="Role quiz">'+QUIZ.map(function(q,i){
+      return '<fieldset class="couplet"><legend><span class="n">'+(i+1)+'</span>'+esc(q.q)+'</legend><div class="opts scale">'+
+        QL.map(function(l,j){return '<label class="opt"><input type="radio" name="q'+i+'" value="'+(j+1)+'"'+(QA[i]===j+1?' checked':'')+'><span>'+l+'</span></label>';}).join('')+'</div></fieldset>';}).join('')+
+    '<div class="keyfoot"><span class="count" id="qcount" aria-live="polite"></span><span class="qbtns"><button class="btn quiet" type="reset">Start over</button><button class="btn primary" type="submit">See my roles</button></span></div></form>'+
+    '<section class="qres" id="qres" aria-live="polite"></section></div>';
+  var form=$('#quiz');
+  function count(){var n=Object.keys(QA).length;$('#qcount').textContent=n+' of '+QUIZ.length+' answered';return n;}
+  function draw(){
+    var n=Object.keys(QA).length;
+    $('#qres').innerHTML=n<5?'<div class="empty"><h3>Answer a few more</h3><p>Pick an answer for at least 5 statements so the quiz has something to go on.</p></div>':
+      '<div class="plate-head"><h2>Your best matches</h2><p>Open one to see a normal day and the skill path to get there.</p></div><ul class="plate">'+quizTop().map(function(x,i){
+        var pct=Math.max(0,Math.min(100,Math.round(50+50*x.s)));
+        return '<li><a class="spec g-'+x.g+'" href="#/role/'+x.r.id+'"><span class="no">'+(i+1)+'. '+pct+'% match</span><span class="mbar" aria-hidden="true"><i style="transform:scaleX('+pct/100+')"></i></span>'+
+          '<h3>'+esc(x.r.name)+'</h3><p>'+(x.why.length?'Because you '+esc(x.why.join(' and '))+'.':'A steady fit across your answers.')+'</p>'+
+          '<span class="meta"><span class="tag"><i class="swatch"></i>'+esc(GM[x.g].name)+'</span><span class="steps">'+anc(x.r.id).size+' skills</span></span></a></li>';}).join('')+
+      '</ul><p class="plate-cap">Change any answer above and this list updates. Want to compare? Browse <a href="#/roles">all '+roles.length+' roles</a>.</p>';
+  }
+  form.addEventListener('change',function(e){QA[+e.target.name.slice(1)]=+e.target.value;count();if(qShown)draw();});
+  form.addEventListener('submit',function(e){e.preventDefault();qShown=true;draw();$('#qres').scrollIntoView({behavior:reduce?'auto':'smooth'});});
+  form.addEventListener('reset',function(e){e.preventDefault();QA={};qShown=false;viewQuiz();window.scrollTo(0,0);$('.view-title').focus();});
+  count();if(qShown)draw();
+}
 function notFound(){main.innerHTML='<div class="wrap pagehead"><h1 class="view-title" tabindex="-1">That page is not in the guide</h1><p class="lede" style="margin:16px 0 24px">The link may be out of date.</p><a class="btn primary" href="#/">Find a role</a></div>';}
 
 /* ---------- router ---------- */
@@ -1144,6 +1225,7 @@ function route(){
   else if(v==='projects'){viewProjects();nav='projects';}
   else if(v==='roles'){viewRoles();nav='roles';}
   else if(v==='skills'){viewSkills();nav='skills';}
+  else if(v==='quiz'){viewQuiz();nav='quiz';}
   else if(v==='')viewHome();
   else notFound();
   document.querySelectorAll('[data-nav]').forEach(function(a){if(a.dataset.nav===nav&&v!=='role')a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
